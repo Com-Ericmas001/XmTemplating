@@ -23,7 +23,7 @@ namespace Com.Ericmas001.XmTemplating.Deserialization.Util
                 case "BR":
                     return new NewLineTemplateDeserializer(parms).Deserialize(tokenizer, root);
                 default:
-                    throw new ArgumentOutOfRangeException("command", string.Format("Command {0} not recognized", command.ToUpper()));
+                    throw new ArgumentOutOfRangeException(nameof(command), $"Command {command.ToUpper()} not recognized");
             }
         }
     }

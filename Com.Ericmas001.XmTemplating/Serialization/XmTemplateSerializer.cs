@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class XmTemplateSerializer : AbstractTemplateSerializer<XmTemplateElement>
     {
         public XmTemplateSerializer(XmTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms = null) : base(element, variables, arrays, parms ?? new TemplateSerializationParms())

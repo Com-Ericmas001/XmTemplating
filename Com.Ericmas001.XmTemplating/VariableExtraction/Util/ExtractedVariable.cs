@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 
 namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
 {
+    [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public class ExtractedVariable
     {
         public string Name { get; private set; }

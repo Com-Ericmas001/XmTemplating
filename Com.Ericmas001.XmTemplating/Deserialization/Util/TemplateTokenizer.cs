@@ -4,7 +4,7 @@ namespace Com.Ericmas001.XmTemplating.Deserialization.Util
 {
     public class TemplateTokenizer
     {
-        private int m_CurrentIndex = 0;
+        private int m_CurrentIndex;
         private readonly string m_CurrentTemplate;
         public TemplateTokenizer(string template)
         {
@@ -29,20 +29,10 @@ namespace Com.Ericmas001.XmTemplating.Deserialization.Util
             while (chars.Contains(m_CurrentTemplate[m_CurrentIndex]))
                 m_CurrentIndex++;
         }
-        public char CurrentChar
-        {
-            get { return m_CurrentTemplate[m_CurrentIndex]; }
-        }
+        public char CurrentChar => m_CurrentTemplate[m_CurrentIndex];
 
-        public string CurrentTemplate
-        {
-            get { return m_CurrentTemplate; }
-        }
-
-        public string CurrentString(int length)
-        {
-            return m_CurrentTemplate.Substring(m_CurrentIndex, length);
-        }
+        public string CurrentTemplate => m_CurrentTemplate;
+        
         public string PeekUntilChar(params char[] chars)
         {
             if (m_CurrentIndex >= m_CurrentTemplate.Length)

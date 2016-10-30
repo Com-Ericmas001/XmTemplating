@@ -25,7 +25,7 @@ namespace Com.Ericmas001.XmTemplating.Deserialization
             {
                 var condition = ConditionDeserializer.Deserialize(tokenizer.AdvanceUntilChar(']').InfoAfter("[", int.MaxValue), new Dictionary<string, AbstractConditionPart>());
                 var opCond = condition as OperationConditionPart;
-                if(opCond == null || !(opCond.LeftSide is VariableConditionPart) || opCond.Operator != ConditionPartOperatorEnum.Range || !(opCond.RightSide is OperationConditionPart))
+                if(!(opCond?.LeftSide is VariableConditionPart) || opCond.Operator != ConditionPartOperatorEnum.Range || !(opCond.RightSide is OperationConditionPart))
                     throw new ArgumentException("Invalid FOR condition");
 
                 result.Variable = (VariableConditionPart) opCond.LeftSide;

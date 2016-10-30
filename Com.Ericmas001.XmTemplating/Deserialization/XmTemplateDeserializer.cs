@@ -1,8 +1,10 @@
-﻿using System.Linq;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.Linq;
 using Com.Ericmas001.XmTemplating.Deserialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Deserialization
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class XmTemplateDeserializer : AbstractTemplateDeserializer<XmTemplateElement>
     {
         public XmTemplateDeserializer(TemplateDeserializationParms parms = null) : base(parms ?? new TemplateDeserializationParms())

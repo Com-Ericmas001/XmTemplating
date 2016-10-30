@@ -2,7 +2,8 @@
 {
     public abstract class AbstractTemplateElement
     {
-        public AbstractTemplateElement Parent { get; private set; }
+        // ReSharper disable once UnusedAutoPropertyAccessor.Local
+        private AbstractTemplateElement Parent { get; set; }
 
         protected AbstractTemplateElement(AbstractTemplateElement parent)
         {

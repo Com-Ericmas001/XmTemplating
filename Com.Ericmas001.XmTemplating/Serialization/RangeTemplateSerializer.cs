@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using Com.Ericmas001.XmTemplating.Conditions;
 using Com.Ericmas001.XmTemplating.Conditions.Util;
 using Com.Ericmas001.XmTemplating.Serialization.Util;
 
@@ -21,8 +20,10 @@ namespace Com.Ericmas001.XmTemplating.Serialization
             if (!Element.InludeMaximum)
                 max--;
 
-            var vars = new Dictionary<string, string>(Variables);
-            vars.Add(varPart.VariableName, null);
+            var vars = new Dictionary<string, string>(Variables)
+            {
+                {varPart.VariableName, null}
+            };
             for (int i = min; i <= max; ++i)
             {
                 string value = i.ToString();
@@ -30,25 +31,6 @@ namespace Com.Ericmas001.XmTemplating.Serialization
 
                 foreach (var elem in Element.Elements)
                     TemplateSerializationFactory.Serialize(tw, elem, vars, Arrays, Parms);
-            }
-        }
-
-        private void SerializeVarPart(TextWriter tw, VariableConditionPart varPart)
-        {
-            string enumerationVariable = varPart.VariableName;
-
-            var arrs = new Dictionary<string, IEnumerable<string>>(Arrays);
-            arrs.Remove(enumerationVariable);
-
-            var vars = new Dictionary<string, string>(Variables);
-            vars.Add(enumerationVariable, null);
-
-            foreach (var value in Arrays[enumerationVariable])
-            {
-                vars[enumerationVariable] = value;
-
-                foreach (var elem in Element.Elements)
-                    TemplateSerializationFactory.Serialize(tw, elem, vars, arrs, Parms);
             }
         }
     }

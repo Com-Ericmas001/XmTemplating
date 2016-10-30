@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Com.Ericmas001.XmTemplating.VariableExtraction.Util;
 
 namespace Com.Ericmas001.XmTemplating.VariableExtraction
 {
+    [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class VariableExtractor : AbstractVariableExtractor<XmTemplateElement>
     {
         public VariableExtractor(XmTemplateElement element, VariableExtractionParms parms = null) : base(element, parms ?? new VariableExtractionParms())

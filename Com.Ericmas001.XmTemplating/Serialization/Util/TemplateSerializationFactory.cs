@@ -30,7 +30,7 @@ namespace Com.Ericmas001.XmTemplating.Serialization.Util
                 new DefineTemplateSerializer((DefineTemplateElement)element, vars, arrays, parms).Serialize(tw);
 
             else
-                throw new ArgumentOutOfRangeException("element", string.Format("Serializer not found for element of type {0}", element.GetType()));
+                throw new ArgumentOutOfRangeException(nameof(element), $"Serializer not found for element of type {element.GetType()}");
         }
     }
 }

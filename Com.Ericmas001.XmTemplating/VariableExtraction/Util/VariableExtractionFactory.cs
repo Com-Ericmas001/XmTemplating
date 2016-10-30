@@ -26,7 +26,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
                 new DefineVariableExtractor((DefineTemplateElement)element, parms).ExtractVariables(variables);
 
             else
-                throw new ArgumentOutOfRangeException("element", string.Format("Variable Extractor not found for element of type {0}", element.GetType()));
+                throw new ArgumentOutOfRangeException(nameof(element), $"Variable Extractor not found for element of type {element.GetType()}");
         }
     }
 }

@@ -42,8 +42,10 @@ namespace Com.Ericmas001.XmTemplating.Serialization
             var arrs = new Dictionary<string, IEnumerable<string>>(Arrays);
             arrs.Remove(enumerationVariable);
 
-            var vars = new Dictionary<string, string>(Variables);
-            vars.Add(enumerationVariable, null);
+            var vars = new Dictionary<string, string>(Variables)
+            {
+                {enumerationVariable, null}
+            };
 
             foreach (var value in Arrays[enumerationVariable])
             {

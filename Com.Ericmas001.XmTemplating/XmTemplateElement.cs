@@ -6,6 +6,7 @@ namespace Com.Ericmas001.XmTemplating
     {
         public IEnumerable<AbstractTemplateElement> Elements { get; set; }
 
+        // ReSharper disable once UnusedAutoPropertyAccessor.Global
         public string TemplateSource { get; set; }
 
         public XmTemplateElement() : base(null)

@@ -2,7 +2,7 @@
 {
     public static class NumberGiver
     {
-        private static long m_Num = 0;
+        private static long m_Num;
         public static string NewNumber()
         {
             return m_Num++.ToString("000000000");
