@@ -1,19 +1,29 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.XmTemplating.Deserialization.Util;
+using Com.Ericmas001.XmTemplating.Enums;
 
 namespace Com.Ericmas001.XmTemplating.Deserialization
 {
-    public abstract class AbstractTemplateDeserializer<T> where T: AbstractTemplateElement
+    public abstract class AbstractTemplateDeserializer<T> : AbstractTemplateDeserializer where T : AbstractTemplateElement
+    {
+        public abstract T Deserialize(TemplateTokenizer tokenizer, AbstractTemplateElement root);
+        public override AbstractTemplateElement DeserializeElement(TemplateTokenizer tokenizer, AbstractTemplateElement root)
+        {
+            return Deserialize(tokenizer, root);
+        }
+    }
+    public abstract class AbstractTemplateDeserializer
     {
         public TemplateDeserializationParms Parms { get; private set; }
+        public TemplateCommandEnum Command { get; private set; }
 
-        protected AbstractTemplateDeserializer(TemplateDeserializationParms parms)
+        public virtual void Initialize(TemplateDeserializationParms parms, TemplateCommandEnum command)
         {
             Parms = parms;
+            Command = command;
         }
-
-        public abstract T Deserialize(TemplateTokenizer tokenizer, AbstractTemplateElement root );
+        public abstract AbstractTemplateElement DeserializeElement(TemplateTokenizer tokenizer, AbstractTemplateElement root);
 
         protected IEnumerable<AbstractTemplateElement> FindElements(AbstractTemplateElement root, TemplateTokenizer tokenizer, params string[] delimitters)
         {

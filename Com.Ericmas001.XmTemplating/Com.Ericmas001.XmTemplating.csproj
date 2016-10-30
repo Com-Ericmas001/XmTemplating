@@ -45,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractTemplateElement.cs" />
+    <Compile Include="Attributes\TemplateCommandAttribute.cs" />
     <Compile Include="ConditionalTemplateElement.cs" />
     <Compile Include="Conditions\AbstractConditionPart.cs" />
     <Compile Include="Conditions\GroupedConditionPart.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Deserialization\DefineTemplateDeserializer.cs" />
     <Compile Include="Deserialization\EnumeratorTemplateDeserializer.cs" />
     <Compile Include="Deserialization\EvaluateTemplateDeserializer.cs" />
+    <Compile Include="Attributes\TemplateCommandNameAttribute.cs" />
     <Compile Include="Deserialization\XmTemplateDeserializer.cs" />
     <Compile Include="Deserialization\NewLineTemplateDeserializer.cs" />
     <Compile Include="Deserialization\RangeTemplateDeserializer.cs" />
@@ -70,6 +72,7 @@
     <Compile Include="Deserialization\Util\TemplateDeserializationParms.cs" />
     <Compile Include="Deserialization\Util\TemplateTokenizer.cs" />
     <Compile Include="EnumeratorTemplateElement.cs" />
+    <Compile Include="Enums\TemplateCommandEnum.cs" />
     <Compile Include="EvaluateTemplateElement.cs" />
     <Compile Include="VariableExtraction\Util\VariableTypeEnum.cs" />
     <Compile Include="XmTemplateElement.cs" />

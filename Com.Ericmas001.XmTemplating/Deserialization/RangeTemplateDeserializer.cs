@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.Common;
+using Com.Ericmas001.XmTemplating.Attributes;
 using Com.Ericmas001.XmTemplating.Conditions;
 using Com.Ericmas001.XmTemplating.Conditions.Util;
 using Com.Ericmas001.XmTemplating.Deserialization.Util;
+using Com.Ericmas001.XmTemplating.Enums;
 
 namespace Com.Ericmas001.XmTemplating.Deserialization
 {
+    [TemplateCommand(TemplateCommandEnum.For)]
     public class RangeTemplateDeserializer : AbstractTemplateDeserializer<RangeTemplateElement>
     {
-        public RangeTemplateDeserializer(TemplateDeserializationParms parms) : base(parms)
-        {
-        }
-
         public override RangeTemplateElement Deserialize(TemplateTokenizer tokenizer, AbstractTemplateElement root)
         {
             var result = new RangeTemplateElement(root);
