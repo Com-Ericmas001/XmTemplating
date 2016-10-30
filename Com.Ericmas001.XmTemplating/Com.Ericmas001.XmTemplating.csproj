@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Com.Ericmas001.Common, Version=0.2.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Com.Ericmas001.Common.0.3.1\lib\Com.Ericmas001.Common.dll</HintPath>
+    <Reference Include="Com.Ericmas001.Common, Version=0.4.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Com.Ericmas001.Common.0.4.0\lib\Com.Ericmas001.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -41,7 +41,6 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
@@ -72,6 +71,7 @@
     <Compile Include="Deserialization\Util\TemplateTokenizer.cs" />
     <Compile Include="EnumeratorTemplateElement.cs" />
     <Compile Include="EvaluateTemplateElement.cs" />
+    <Compile Include="VariableExtraction\Util\VariableTypeEnum.cs" />
     <Compile Include="XmTemplateElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeTemplateElement.cs" />
@@ -97,7 +97,6 @@
     <Compile Include="VariableExtraction\Util\ExtractedVariable.cs" />
     <Compile Include="VariableExtraction\Util\VariableExtractionFactory.cs" />
     <Compile Include="VariableExtraction\Util\VariableExtractionParms.cs" />
-    <Compile Include="VariableExtraction\Util\VariableTypeEnum.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

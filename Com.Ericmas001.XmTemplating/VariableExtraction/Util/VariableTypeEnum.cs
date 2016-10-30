@@ -4,19 +4,22 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
 {
     public enum VariableTypeEnum
     {
-        [DisplayName("")]
         Unknown,
 
-        [DisplayName("Texte")]
+        [DisplayName("Text")]
+        [FrDisplayName("Texte")]
         Text,
 
-        [DisplayName("Nombre")]
+        [DisplayName("Number")]
+        [FrDisplayName("Nombre")]
         Number,
 
-        [DisplayName("Vrai/Faux")]
+        [DisplayName("Boolean")]
+        [FrDisplayName("Vrai/Faux")]
         Boolean,
 
-        [DisplayName("Élément de liste")]
+        [DisplayName("List Item")]
+        [FrDisplayName("Élément de liste")]
         ListItem
     }
 }
