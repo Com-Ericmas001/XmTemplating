@@ -8,7 +8,7 @@
             <td rowspan>.Net</td>
             <td align="center">
             <a href="https://www.nuget.org/packages/Com.Ericmas001.XmTemplating/" target="_blank">
-            Com.Ericmas001.Common <br />
+            Com.Ericmas001.XmTemplating <br />
             <img src="https://raw.githubusercontent.com/NuGet/Home/master/resources/nuget.png" alt="NuGet" width=150 />
             </a>
             </td>
