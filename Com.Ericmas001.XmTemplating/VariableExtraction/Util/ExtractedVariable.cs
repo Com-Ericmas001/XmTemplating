@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+using Com.Ericmas001.XmTemplating.Enums;
 
 namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
 {

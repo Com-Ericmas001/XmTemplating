@@ -45,8 +45,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbstractTemplateElement.cs" />
-    <Compile Include="Attributes\TemplateCommandAttribute.cs" />
+    <Compile Include="Attributes\AvailableToAttribute.cs" />
+    <Compile Include="Attributes\ValueTypeAttribute.cs" />
+    <Compile Include="Builder\XmAttribute.cs" />
+    <Compile Include="Builder\XmTemplate.cs" />
+    <Compile Include="Builder\XmVariable.cs" />
+    <Compile Include="Builder\Util\XmlDeserializerFactory.cs" />
     <Compile Include="ConditionalTemplateElement.cs" />
+    <Compile Include="DefineTemplateElement.cs" />
+    <Compile Include="EnumeratorTemplateElement.cs" />
+    <Compile Include="Enums\VarAttributeEnum.cs" />
+    <Compile Include="Attributes\TemplateCommandAttribute.cs" />
     <Compile Include="Conditions\AbstractConditionPart.cs" />
     <Compile Include="Conditions\GroupedConditionPart.cs" />
     <Compile Include="Conditions\LiteralConditionPart.cs" />
@@ -58,7 +67,6 @@
     <Compile Include="Conditions\Util\SequentialAttribute.cs" />
     <Compile Include="Conditions\Util\SupportedOperatorAttribute.cs" />
     <Compile Include="Conditions\VariableConditionPart.cs" />
-    <Compile Include="DefineTemplateElement.cs" />
     <Compile Include="Deserialization\AbstractTemplateDeserializer.cs" />
     <Compile Include="Deserialization\ConditionalTemplateDeserializer.cs" />
     <Compile Include="Deserialization\DefineTemplateDeserializer.cs" />
@@ -71,11 +79,9 @@
     <Compile Include="Deserialization\Util\TemplateDeserializationFactory.cs" />
     <Compile Include="Deserialization\Util\TemplateDeserializationParms.cs" />
     <Compile Include="Deserialization\Util\TemplateTokenizer.cs" />
-    <Compile Include="EnumeratorTemplateElement.cs" />
     <Compile Include="Enums\TemplateCommandEnum.cs" />
+    <Compile Include="Enums\VariableTypeEnum.cs" />
     <Compile Include="EvaluateTemplateElement.cs" />
-    <Compile Include="VariableExtraction\Util\VariableTypeEnum.cs" />
-    <Compile Include="XmTemplateElement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RangeTemplateElement.cs" />
     <Compile Include="Serialization\AbstractTemplateSerializer.cs" />
@@ -94,16 +100,18 @@
     <Compile Include="VariableExtraction\DefineVariableExtractor.cs" />
     <Compile Include="VariableExtraction\EnumeratorVariableExtractor.cs" />
     <Compile Include="VariableExtraction\EvaluateVariableExtractor.cs" />
+    <Compile Include="VariableExtraction\Util\ExtractedVariable.cs" />
     <Compile Include="VariableExtraction\VariableExtractor.cs" />
     <Compile Include="VariableExtraction\RangeVariableExtractor.cs" />
     <Compile Include="VariableExtraction\StaticVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\Util\ExtractedVariable.cs" />
     <Compile Include="VariableExtraction\Util\VariableExtractionFactory.cs" />
     <Compile Include="VariableExtraction\Util\VariableExtractionParms.cs" />
+    <Compile Include="XmTemplateElement.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
