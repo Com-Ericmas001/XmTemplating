@@ -1,7 +1,7 @@
 # Com.Ericmas001.XmTemplating
 
 
-###Current Version: 0.2.1 *(2016-11-08)*
+###Current Version: 0.2.2 *(2016-11-08)*
 <table align="center" width="100%">
     <tbody>
         <tr>
