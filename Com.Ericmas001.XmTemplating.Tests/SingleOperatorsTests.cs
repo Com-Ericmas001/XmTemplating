@@ -138,38 +138,62 @@ namespace Com.Ericmas001.XmTemplating.Tests
         [TestMethod]
         public void TestAndSuccessBecauseBothTrue()
         {
+            Evaluate("{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+            Evaluate("{V} = \"True\" && \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+
             Evaluate("{V} AND \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
             Evaluate("{V} && \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+
         }
         [TestMethod]
         public void TestAndFailsBecauseOnlyOneTrue()
         {
+            Evaluate("{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            Evaluate("{V} = \"True\" && \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+
             Evaluate("{V} AND \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
             Evaluate("{V} && \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+
         }
         [TestMethod]
         public void TestAndFailsBecauseBothFalse()
         {
+            Evaluate("{V} = \"True\" AND \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            Evaluate("{V} = \"True\" && \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+
             Evaluate("{V} AND \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
             Evaluate("{V} && \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+
         }
         [TestMethod]
         public void TestOrSuccessBecauseBothTrue()
         {
+            Evaluate("{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+            Evaluate("{V} = \"True\" || \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+
             Evaluate("{V} OR \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
             Evaluate("{V} || \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+
         }
         [TestMethod]
         public void TestOrSuccessBecauseOnlyOneTrue()
         {
+            Evaluate("{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
+            Evaluate("{V} = \"True\" || \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
+
             Evaluate("{V} OR \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
             Evaluate("{V} || \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
+
         }
         [TestMethod]
         public void TestOrFailsBecauseBothFalse()
         {
+            Evaluate("{V} = \"True\" OR \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            Evaluate("{V} = \"True\" || \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+
             Evaluate("{V} OR \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
             Evaluate("{V} || \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+
         }
     }
 }
