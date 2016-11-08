@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Com.Ericmas001.XmTemplating.Conditions.Util
+namespace Com.Ericmas001.XmTemplating.Attributes
 {
     public class SequentialAttribute : Attribute
     {

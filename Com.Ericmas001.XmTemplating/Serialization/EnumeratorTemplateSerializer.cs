@@ -2,6 +2,7 @@
 using System.IO;
 using Com.Ericmas001.XmTemplating.Conditions;
 using Com.Ericmas001.XmTemplating.Conditions.Util;
+using Com.Ericmas001.XmTemplating.Enums;
 using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization

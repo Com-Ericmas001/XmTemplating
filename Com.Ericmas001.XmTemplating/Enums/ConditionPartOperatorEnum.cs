@@ -1,7 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using Com.Ericmas001.Common.Attributes;
+using Com.Ericmas001.XmTemplating.Attributes;
+using Com.Ericmas001.XmTemplating.Conditions.Util;
 
-namespace Com.Ericmas001.XmTemplating.Conditions.Util
+namespace Com.Ericmas001.XmTemplating.Enums
 {
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public enum ConditionPartOperatorEnum

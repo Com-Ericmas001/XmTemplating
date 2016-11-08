@@ -1,4 +1,5 @@
 ﻿using Com.Ericmas001.XmTemplating.Conditions.Util;
+using Com.Ericmas001.XmTemplating.Enums;
 
 namespace Com.Ericmas001.XmTemplating.Conditions
 {

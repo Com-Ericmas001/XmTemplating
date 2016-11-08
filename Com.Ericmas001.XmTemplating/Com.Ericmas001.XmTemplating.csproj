@@ -63,11 +63,11 @@
     <Compile Include="Conditions\LiteralConditionPart.cs" />
     <Compile Include="Conditions\OperationConditionPart.cs" />
     <Compile Include="Conditions\Util\ConditionDeserializer.cs" />
-    <Compile Include="Conditions\Util\ConditionPartOperatorEnum.cs" />
+    <Compile Include="Enums\ConditionPartOperatorEnum.cs" />
     <Compile Include="Conditions\Util\ConditionSerializer.cs" />
     <Compile Include="Conditions\Util\NumberGiver.cs" />
-    <Compile Include="Conditions\Util\SequentialAttribute.cs" />
-    <Compile Include="Conditions\Util\SupportedOperatorAttribute.cs" />
+    <Compile Include="Attributes\SequentialAttribute.cs" />
+    <Compile Include="Attributes\SupportedOperatorAttribute.cs" />
     <Compile Include="Conditions\VariableConditionPart.cs" />
     <Compile Include="Deserialization\AbstractTemplateDeserializer.cs" />
     <Compile Include="Deserialization\ConditionalTemplateDeserializer.cs" />

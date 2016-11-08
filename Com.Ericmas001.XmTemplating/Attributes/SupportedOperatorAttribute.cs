@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Com.Ericmas001.XmTemplating.Conditions.Util
+namespace Com.Ericmas001.XmTemplating.Attributes
 {
     public class SupportedOperatorAttribute : Attribute
     {
