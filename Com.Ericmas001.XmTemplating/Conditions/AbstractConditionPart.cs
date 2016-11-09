@@ -19,9 +19,9 @@ namespace Com.Ericmas001.XmTemplating.Conditions
             switch (op.Operator)
             {
                 case ConditionPartOperatorEnum.And:
-                    return op.LeftSide.Evaluate(variables) && op.RightSide.Evaluate(variables);
+                    return ConditionSerializer.Serialize(op.LeftSide, new Dictionary<string, string>(variables)) == true.ToString() && ConditionSerializer.Serialize(op.RightSide, new Dictionary<string, string>(variables)) == true.ToString();
                 case ConditionPartOperatorEnum.Or:
-                    return op.LeftSide.Evaluate(variables) || op.RightSide.Evaluate(variables);
+                    return ConditionSerializer.Serialize(op.LeftSide, new Dictionary<string, string>(variables)) == true.ToString() || ConditionSerializer.Serialize(op.RightSide, new Dictionary<string, string>(variables)) == true.ToString();
                 case ConditionPartOperatorEnum.Equals:
                     return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables), ConditionSerializer.Serialize(op.RightSide, variables)) == 0;
                 case ConditionPartOperatorEnum.Different:
