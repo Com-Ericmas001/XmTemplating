@@ -13,21 +13,34 @@ namespace Com.Ericmas001.XmTemplating.Tests
     {
         private void Evaluate(string condition, IDictionary<string, string> vars, string expectedResult)
         {
-            //Arrange
-            var templateStr = $"<EVAL [{condition}] />";
-            var template = XmTemplateDeserializer.Deserialize(templateStr);
             var arrays = new Dictionary<string, IEnumerable<string>>();
 
+            //Arrange
+            var templateStrEval = $"<EVAL [{condition}] />";
+            var templateEval = XmTemplateDeserializer.Deserialize(templateStrEval);
+
             //Act
-            var result = new XmTemplateSerializer(template, vars, arrays).SerializeText();
+            var resultEval = new XmTemplateSerializer(templateEval, vars, arrays).SerializeText();
 
             StringWriter sw = new StringWriter();
             sw.WriteLine();
-            sw.WriteLine(templateStr);
+            sw.WriteLine(templateStrEval);
             sw.Write(string.Join(Environment.NewLine, vars.Select(x => $"{x.Key} = {x.Value}")));
 
             //Assert
-            Assert.AreEqual(expectedResult, result, sw.ToString());
+            Assert.AreEqual(expectedResult, resultEval, sw.ToString());
+
+            //Arrange
+            var templateStrIf = $"<IF [{condition}]>{true}<:ELSE:>{false}</IF>";
+            var templateIf = XmTemplateDeserializer.Deserialize(templateStrIf);
+            var resultIf = new XmTemplateSerializer(templateIf, vars, arrays).SerializeText();
+            sw = new StringWriter();
+            sw.WriteLine();
+            sw.WriteLine(templateStrIf);
+            sw.Write(string.Join(Environment.NewLine, vars.Select(x => $"{x.Key} = {x.Value}")));
+
+            //Assert
+            Assert.AreEqual(expectedResult, resultIf, sw.ToString());
         }
         [TestMethod]
         public void TestEqualSuccess()
@@ -194,6 +207,16 @@ namespace Com.Ericmas001.XmTemplating.Tests
             Evaluate("{V} OR \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
             Evaluate("{V} || \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
 
+        }
+        [TestMethod]
+        public void TestTrue()
+        {
+            Evaluate("{V}", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+        }
+        [TestMethod]
+        public void TestFalse()
+        {
+            Evaluate("{V}", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
         }
     }
 }
