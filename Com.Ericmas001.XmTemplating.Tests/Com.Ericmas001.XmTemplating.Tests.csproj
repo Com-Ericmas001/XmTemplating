@@ -50,8 +50,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SingleOperatorsTests.cs" />
+    <Compile Include="CalculationOperatorsTests.cs" />
+    <Compile Include="ConditionOperatorsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\EvaluateUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ericmas001.XmTemplating\Com.Ericmas001.XmTemplating.csproj">

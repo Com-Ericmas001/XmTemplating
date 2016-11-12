@@ -62,20 +62,20 @@ namespace Com.Ericmas001.XmTemplating.Enums
         [Priority(130)]
         Until,
 
-        [SupportedOperator("*")]
-        [Priority(300)]
-        Multiply,
-
-        [SupportedOperator("/")]
-        [Priority(300)]
-        Divide,
-
         [SupportedOperator("+")]
-        [Priority(310)]
+        [Priority(300)]
         Add,
 
         [SupportedOperator("-")]
+        [Priority(300)]
+        Subtract,
+
+        [SupportedOperator("*")]
         [Priority(310)]
-        Subtract
+        Multiply,
+
+        [SupportedOperator("/")]
+        [Priority(310)]
+        Divide
     }
 }
