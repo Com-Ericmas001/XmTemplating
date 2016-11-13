@@ -65,11 +65,11 @@ namespace Com.Ericmas001.XmTemplating.Conditions.Util
             int iAfterOp = iOp + op.Length;
             var left = Deserialize(condition.Remove(iOp), dicConditionPart);
             var iNexts = equivalentOperators.Select(x => condition.ToUpper().IndexOf(x, iAfterOp, StringComparison.Ordinal)).Where(i => i >= 0).ToArray();
-            var iNext = iNexts.Any() ? iNexts.Min() - 1 : condition.Length;
+            var iNext = iNexts.Any() ? iNexts.Min(): condition.Length;
             var right = Deserialize(condition.Substring(iAfterOp, iNext - iAfterOp), dicConditionPart);
             string g = NumberGiver.NewNumber();
             dicConditionPart.Add(g, new OperationConditionPart { LeftSide = left, Operator = oper, RightSide = right });
-            return "[" + g + "]" + (iNext < condition.Length ? condition.Substring(iNext + 1) : "");
+            return "[" + g + "]" + (iNext < condition.Length ? condition.Substring(iNext) : "");
         }
     }
 }

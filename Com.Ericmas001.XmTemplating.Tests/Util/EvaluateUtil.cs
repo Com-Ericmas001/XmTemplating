@@ -31,12 +31,17 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util
             var template = XmTemplateDeserializer.Deserialize(templateStr);
 
             //Act
-            var result = new XmTemplateSerializer(template, vars, arrays ?? new Dictionary<string, IEnumerable<string>>()).SerializeText();
+            var arr = arrays ?? new Dictionary<string, IEnumerable<string>>();
+            var result = new XmTemplateSerializer(template, vars, arr).SerializeText();
 
             var sw = new StringWriter();
             sw.WriteLine();
             sw.WriteLine(templateStr);
-            sw.Write(string.Join(Environment.NewLine, vars.Select(x => $"{x.Key} = {x.Value}")));
+            sw.WriteLine(string.Join(Environment.NewLine, vars.Select(x => $"{x.Key} = {x.Value}")));
+            foreach (var array in arr)
+            {
+                sw.WriteLine("{0} = ({1})", array.Key, string.Join(", ", array.Value));
+            }
 
             //Assert
             Assert.AreEqual(expectedResult, result, sw.ToString());
