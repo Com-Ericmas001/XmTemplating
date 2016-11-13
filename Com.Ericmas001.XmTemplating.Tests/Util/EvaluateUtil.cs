@@ -23,8 +23,16 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util
         {
             Evaluate(expectedResult, "<EVAL ", " />", expression, vars, arrays);
         }
+        public static void EvaluateFor(string expectedResult, string condition, string content, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
+        {
+            Evaluate(expectedResult, "<FOR ", ">" + content + "</FOREACH>", condition, vars, arrays);
+        }
+        public static void EvaluateForeach(string expectedResult, string condition, string content, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
+        {
+            Evaluate(expectedResult, "<FOREACH ", ">" + content + "</FOREACH>", condition, vars, arrays);
+        }
 
-        private static void Evaluate(string expectedResult, string beforeCondition, string afterCondition, string condition, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
+        public static void Evaluate(string expectedResult, string beforeCondition, string afterCondition, string condition, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
         {
             //Arrange
             var templateStr = $"{beforeCondition}[{condition}]{afterCondition}";
