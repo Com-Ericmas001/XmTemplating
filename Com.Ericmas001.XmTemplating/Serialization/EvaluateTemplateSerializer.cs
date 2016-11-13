@@ -13,7 +13,7 @@ namespace Com.Ericmas001.XmTemplating.Serialization
 
         public override void Serialize(TextWriter tw)
         {
-            tw.Write(ConditionSerializer.Serialize(Element.Expression, new Dictionary<string, string>(Variables)));
+            tw.Write(ConditionSerializer.Serialize(Element.Expression, new Dictionary<string, string>(Variables), new Dictionary<string, IEnumerable<string>>(Arrays)));
         }
     }
 }

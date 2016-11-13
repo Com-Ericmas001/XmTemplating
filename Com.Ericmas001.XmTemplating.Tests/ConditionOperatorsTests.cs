@@ -10,178 +10,194 @@ namespace Com.Ericmas001.XmTemplating.Tests
         [TestMethod]
         public void TestEqualSuccess()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"42\"", new Dictionary<string, string> { { "V", "42" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} == \"42\"", new Dictionary<string, string> { { "V", "42" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} EQ \"42\"", new Dictionary<string, string> { { "V", "42" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} = \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} == \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} EQ \"42\"", new Dictionary<string, string> { { "V", "42" } });
         }
         [TestMethod]
         public void TestEqualFails()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"42\"", new Dictionary<string, string> { { "V", "21" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} == \"42\"", new Dictionary<string, string> { { "V", "21" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} EQ \"42\"", new Dictionary<string, string> { { "V", "21" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} = \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} == \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} EQ \"42\"", new Dictionary<string, string> { { "V", "21" } });
         }
         [TestMethod]
         public void TestNotEqualSuccess()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} != \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} <> \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} NQ \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} NE \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} != \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} <> \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} NQ \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} NE \"42\"", new Dictionary<string, string> { { "V", "21" } });
         }
         [TestMethod]
         public void TestNotEqualFails()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} != \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} <> \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} NQ \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} NE \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} != \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} <> \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} NQ \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} NE \"42\"", new Dictionary<string, string> { { "V", "42" } });
         }
 
         [TestMethod]
         public void TestLowerThanSuccess()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} < \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} LT \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} < \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} LT \"42\"", new Dictionary<string, string> { { "V", "21" } });
         }
         [TestMethod]
         public void TestLowerThanFailsBecauseEqual()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} < \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} LT \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} < \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} LT \"42\"", new Dictionary<string, string> { { "V", "42" } });
         }
         [TestMethod]
         public void TestLowerThanFailsBecauseGreater()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} < \"42\"", new Dictionary<string, string> { { "V", "84" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} LT \"42\"", new Dictionary<string, string> { { "V", "84" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} < \"42\"", new Dictionary<string, string> { { "V", "84" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} LT \"42\"", new Dictionary<string, string> { { "V", "84" } });
         }
 
         [TestMethod]
         public void TestLowerEqualSuccessBecauseLower()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} <= \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} LE \"42\"", new Dictionary<string, string> { { "V", "21" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} <= \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} LE \"42\"", new Dictionary<string, string> { { "V", "21" } });
         }
         [TestMethod]
         public void TestLowerEqualSuccessBecauseEqual()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} <= \"42\"", new Dictionary<string, string> { { "V", "42" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} LE \"42\"", new Dictionary<string, string> { { "V", "42" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} <= \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} LE \"42\"", new Dictionary<string, string> { { "V", "42" } });
         }
         [TestMethod]
         public void TestLowerEqualFailsBecauseGreater()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} <= \"42\"", new Dictionary<string, string> { { "V", "84" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} LE \"42\"", new Dictionary<string, string> { { "V", "84" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} <= \"42\"", new Dictionary<string, string> { { "V", "84" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} LE \"42\"", new Dictionary<string, string> { { "V", "84" } });
         }
 
         [TestMethod]
         public void TestGreaterEqualSuccessBecauseGreater()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} >= \"42\"", new Dictionary<string, string> { { "V", "84" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} GE \"42\"", new Dictionary<string, string> { { "V", "84" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} >= \"42\"", new Dictionary<string, string> { { "V", "84" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} GE \"42\"", new Dictionary<string, string> { { "V", "84" } });
         }
         [TestMethod]
         public void TestGreaterEqualSuccessBecauseEqual()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} >= \"42\"", new Dictionary<string, string> { { "V", "42" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} GE \"42\"", new Dictionary<string, string> { { "V", "42" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} >= \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} GE \"42\"", new Dictionary<string, string> { { "V", "42" } });
         }
         [TestMethod]
         public void TestGreaterEqualFailsBecauseLower()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} >= \"42\"", new Dictionary<string, string> { { "V", "21" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} GE \"42\"", new Dictionary<string, string> { { "V", "21" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} >= \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} GE \"42\"", new Dictionary<string, string> { { "V", "21" } });
         }
 
         [TestMethod]
         public void TestGreaterThanSuccessBecauseGreater()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} > \"42\"", new Dictionary<string, string> { { "V", "84" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} GT \"42\"", new Dictionary<string, string> { { "V", "84" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} > \"42\"", new Dictionary<string, string> { { "V", "84" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} GT \"42\"", new Dictionary<string, string> { { "V", "84" } });
         }
         [TestMethod]
         public void TestGreaterThanFailsBecauseEqual()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} > \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} GT \"42\"", new Dictionary<string, string> { { "V", "42" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} > \"42\"", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} GT \"42\"", new Dictionary<string, string> { { "V", "42" } });
         }
         [TestMethod]
         public void TestGreaterThanFailsBecauseLower()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} > \"42\"", new Dictionary<string, string> { { "V", "21" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} GT \"42\"", new Dictionary<string, string> { { "V", "21" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} > \"42\"", new Dictionary<string, string> { { "V", "21" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} GT \"42\"", new Dictionary<string, string> { { "V", "21" } });
         }
         [TestMethod]
         public void TestAndSuccessBecauseBothTrue()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" && \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" && \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } });
 
-            EvaluateUtil.EvaluateBooleanCondition("{V} AND \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} && \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} AND \"True\"", new Dictionary<string, string> { { "V", "True" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} && \"True\"", new Dictionary<string, string> { { "V", "True" } });
 
         }
         [TestMethod]
         public void TestAndFailsBecauseOnlyOneTrue()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" && \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" && \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
 
-            EvaluateUtil.EvaluateBooleanCondition("{V} AND \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} && \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} AND \"True\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} && \"True\"", new Dictionary<string, string> { { "V", "False" } });
 
         }
         [TestMethod]
         public void TestAndFailsBecauseBothFalse()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" AND \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" && \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" AND \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" && \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
 
-            EvaluateUtil.EvaluateBooleanCondition("{V} AND \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} && \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} AND \"False\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} && \"False\"", new Dictionary<string, string> { { "V", "False" } });
 
         }
         [TestMethod]
         public void TestOrSuccessBecauseBothTrue()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" || \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" || \"True\" = \"True\"", new Dictionary<string, string> { { "V", "True" } });
 
-            EvaluateUtil.EvaluateBooleanCondition("{V} OR \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} || \"True\"", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} OR \"True\"", new Dictionary<string, string> { { "V", "True" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} || \"True\"", new Dictionary<string, string> { { "V", "True" } });
 
         }
         [TestMethod]
         public void TestOrSuccessBecauseOnlyOneTrue()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" || \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" || \"True\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
 
-            EvaluateUtil.EvaluateBooleanCondition("{V} OR \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} || \"True\"", new Dictionary<string, string> { { "V", "False" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} OR \"True\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} || \"True\"", new Dictionary<string, string> { { "V", "False" } });
 
         }
         [TestMethod]
         public void TestOrFailsBecauseBothFalse()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" OR \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} = \"True\" || \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" OR \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" || \"False\" = \"True\"", new Dictionary<string, string> { { "V", "False" } });
 
-            EvaluateUtil.EvaluateBooleanCondition("{V} OR \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
-            EvaluateUtil.EvaluateBooleanCondition("{V} || \"False\"", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} OR \"False\"", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} || \"False\"", new Dictionary<string, string> { { "V", "False" } });
 
         }
         [TestMethod]
         public void TestTrue()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V}", new Dictionary<string, string> { { "V", "True" } }, true.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V}", new Dictionary<string, string> { { "V", "True" } });
         }
         [TestMethod]
         public void TestFalse()
         {
-            EvaluateUtil.EvaluateBooleanCondition("{V}", new Dictionary<string, string> { { "V", "False" } }, false.ToString());
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V}", new Dictionary<string, string> { { "V", "False" } });
+            EvaluateUtil.EvaluateIf(false, "{V}", new Dictionary<string, string> { { "V", "42" } });
+            EvaluateUtil.EvaluateIf(false, "{V}", new Dictionary<string, string> { { "V", "SpongeBob" } });
+        }
+        [TestMethod]
+        public void TestStuffThatIsIn()
+        {
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} IN (\"Hi\",\"Hello\",\"Hey\")", new Dictionary<string, string> { { "V", "Hi" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} IN (\"Hi\",\"Hello\",\"Hey\")", new Dictionary<string, string> { { "V", "Hello" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} IN (\"Hi\",\"Hello\",\"Hey\")", new Dictionary<string, string> { { "V", "Hey" } });
+            EvaluateUtil.EvaluateBooleanCondition(true, "{V} IN {Vs}", new Dictionary<string, string> { { "V", "Hey" } }, new Dictionary<string, IEnumerable<string>> { { "Vs", new[] { "Hi", "Hello", "Hey" } } });
+        }
+        [TestMethod]
+        public void TestStuffThatIsNotIn()
+        {
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} IN (\"Hi\",\"Hello\",\"Hey\")", new Dictionary<string, string> { { "V", "Goodbye" } });
+            EvaluateUtil.EvaluateBooleanCondition(false, "{V} IN {Vs}", new Dictionary<string, string> { { "V", "Goodbye" } }, new Dictionary<string, IEnumerable<string>> { { "Vs", new[] { "Hi", "Hello", "Hey" } } });
         }
     }
 }

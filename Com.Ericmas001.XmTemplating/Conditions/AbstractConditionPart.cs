@@ -10,7 +10,7 @@ namespace Com.Ericmas001.XmTemplating.Conditions
     {
 
 
-        public bool Evaluate(IDictionary<string, string> variables)
+        public bool Evaluate(IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays)
         {
             var op = this as OperationConditionPart;
             if (op == null)
@@ -19,26 +19,32 @@ namespace Com.Ericmas001.XmTemplating.Conditions
             switch (op.Operator)
             {
                 case ConditionPartOperatorEnum.And:
-                    return ConditionSerializer.Serialize(op.LeftSide, new Dictionary<string, string>(variables)) == true.ToString() && ConditionSerializer.Serialize(op.RightSide, new Dictionary<string, string>(variables)) == true.ToString();
+                    return ConditionSerializer.Serialize(op.LeftSide, new Dictionary<string, string>(variables), arrays) == true.ToString() && ConditionSerializer.Serialize(op.RightSide, new Dictionary<string, string>(variables), arrays) == true.ToString();
                 case ConditionPartOperatorEnum.Or:
-                    return ConditionSerializer.Serialize(op.LeftSide, new Dictionary<string, string>(variables)) == true.ToString() || ConditionSerializer.Serialize(op.RightSide, new Dictionary<string, string>(variables)) == true.ToString();
+                    return ConditionSerializer.Serialize(op.LeftSide, new Dictionary<string, string>(variables), arrays) == true.ToString() || ConditionSerializer.Serialize(op.RightSide, new Dictionary<string, string>(variables), arrays) == true.ToString();
                 case ConditionPartOperatorEnum.Equals:
-                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables), ConditionSerializer.Serialize(op.RightSide, variables)) == 0;
+                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables, arrays), ConditionSerializer.Serialize(op.RightSide, variables, arrays)) == 0;
                 case ConditionPartOperatorEnum.Different:
-                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables), ConditionSerializer.Serialize(op.RightSide, variables)) != 0;
+                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables, arrays), ConditionSerializer.Serialize(op.RightSide, variables, arrays)) != 0;
                 case ConditionPartOperatorEnum.LowerThan:
-                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables), ConditionSerializer.Serialize(op.RightSide, variables)) < 0;
+                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables, arrays), ConditionSerializer.Serialize(op.RightSide, variables, arrays)) < 0;
                 case ConditionPartOperatorEnum.LowerOrEqual:
-                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables), ConditionSerializer.Serialize(op.RightSide, variables)) <= 0;
+                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables, arrays), ConditionSerializer.Serialize(op.RightSide, variables, arrays)) <= 0;
                 case ConditionPartOperatorEnum.GreaterOrEqual:
-                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables), ConditionSerializer.Serialize(op.RightSide, variables)) >= 0;
+                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables, arrays), ConditionSerializer.Serialize(op.RightSide, variables, arrays)) >= 0;
                 case ConditionPartOperatorEnum.GreaterThan:
-                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables), ConditionSerializer.Serialize(op.RightSide, variables)) > 0;
+                    return CompareLeftAndRight(ConditionSerializer.Serialize(op.LeftSide, variables, arrays), ConditionSerializer.Serialize(op.RightSide, variables, arrays)) > 0;
                 case ConditionPartOperatorEnum.In:
-                    var left = ConditionSerializer.Serialize(op.LeftSide, variables);
-                    if (left == null || !(op.RightSide is GroupedConditionPart))
+                    var left = ConditionSerializer.Serialize(op.LeftSide, variables, arrays);
+                    IEnumerable<string> values = null;
+                    if (left == null)
                         throw new ArgumentException("the IN is impossible to resolve");
-                    var values = ((GroupedConditionPart)op.RightSide).Values.Select(x => ConditionSerializer.Serialize(x, variables));
+                    if (op.RightSide is GroupedConditionPart)
+                        values = ((GroupedConditionPart)op.RightSide).Values.Select(x => ConditionSerializer.Serialize(x, variables, arrays));
+                    else if (op.RightSide is VariableConditionPart && arrays.ContainsKey(((VariableConditionPart) op.RightSide).VariableName))
+                        values = arrays[((VariableConditionPart) op.RightSide).VariableName];
+                    else
+                        throw new ArgumentException("the IN is impossible to resolve");
                     return values.Any(x => CompareLeftAndRight(left, x) == 0);
             }
 

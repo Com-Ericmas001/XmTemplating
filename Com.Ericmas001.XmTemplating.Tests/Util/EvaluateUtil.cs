@@ -10,24 +10,28 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util
 {
     internal static class EvaluateUtil
     {
-        public static void EvaluateBooleanCondition(string condition, IDictionary<string, string> vars, string expectedResult)
+        public static void EvaluateBooleanCondition(bool expectedResult, string condition, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
         {
-            Evalutate("<EVAL ", " />", condition, vars, expectedResult);
-            Evalutate("<IF ", $">{true}<:ELSE:>{false}</IF>", condition, vars, expectedResult);
+            EvaluateExpression(expectedResult.ToString(), condition, vars, arrays);
+            EvaluateIf(expectedResult, condition, vars, arrays);
         }
-        public static void EvaluateExpression(string expression, IDictionary<string, string> vars, string expectedResult)
+        public static void EvaluateIf(bool expectedResult, string condition, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
         {
-            Evalutate("<EVAL ", " />", expression, vars, expectedResult);
+            Evaluate(expectedResult.ToString(), "<IF ", $">{true}<:ELSE:>{false}</IF>", condition, vars, arrays);
+        }
+        public static void EvaluateExpression(string expectedResult, string expression, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
+        {
+            Evaluate(expectedResult, "<EVAL ", " />", expression, vars, arrays);
         }
 
-        private static void Evalutate(string beforeCondition, string afterCondition, string condition, IDictionary<string, string> vars, string expectedResult)
+        private static void Evaluate(string expectedResult, string beforeCondition, string afterCondition, string condition, IDictionary<string, string> vars, Dictionary<string, IEnumerable<string>> arrays = null)
         {
             //Arrange
             var templateStr = $"{beforeCondition}[{condition}]{afterCondition}";
             var template = XmTemplateDeserializer.Deserialize(templateStr);
 
             //Act
-            var result = new XmTemplateSerializer(template, vars, new Dictionary<string, IEnumerable<string>>()).SerializeText();
+            var result = new XmTemplateSerializer(template, vars, arrays ?? new Dictionary<string, IEnumerable<string>>()).SerializeText();
 
             var sw = new StringWriter();
             sw.WriteLine();

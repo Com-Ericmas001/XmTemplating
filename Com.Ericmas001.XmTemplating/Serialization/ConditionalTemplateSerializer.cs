@@ -13,7 +13,7 @@ namespace Com.Ericmas001.XmTemplating.Serialization
 
         public override void Serialize(TextWriter tw)
         {
-            if (ConditionSerializer.Serialize(Element.Condition, new Dictionary<string, string>(Variables)) == true.ToString())
+            if (ConditionSerializer.Serialize(Element.Condition, new Dictionary<string, string>(Variables), new Dictionary<string, IEnumerable<string>>(Arrays)) == true.ToString())
             {
                 foreach (var elem in Element.ConditionTrueElements)
                     TemplateSerializationFactory.Serialize(tw, elem, Variables, Arrays, Parms);

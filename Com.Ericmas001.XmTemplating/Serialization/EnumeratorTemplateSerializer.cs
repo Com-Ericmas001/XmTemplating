@@ -27,7 +27,7 @@ namespace Com.Ericmas001.XmTemplating.Serialization
                 vars.Add(enumerationVariable, null);
                 foreach (var val in ((GroupedConditionPart)opPart.RightSide).Values)
                 {
-                    string value = ConditionSerializer.Serialize(val, Variables);
+                    string value = ConditionSerializer.Serialize(val, Variables, Arrays);
                     vars[enumerationVariable] = value;
 
                     foreach (var elem in Element.Elements)

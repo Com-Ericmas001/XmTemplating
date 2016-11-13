@@ -15,8 +15,8 @@ namespace Com.Ericmas001.XmTemplating.Serialization
         {
             var varPart = Element.Variable;
 
-            var min = int.Parse(ConditionSerializer.Serialize(Element.Minimum, Variables));
-            var max = int.Parse(ConditionSerializer.Serialize(Element.Maximum, Variables));
+            var min = int.Parse(ConditionSerializer.Serialize(Element.Minimum, Variables, Arrays));
+            var max = int.Parse(ConditionSerializer.Serialize(Element.Maximum, Variables, Arrays));
             if (!Element.InludeMaximum)
                 max--;
 
