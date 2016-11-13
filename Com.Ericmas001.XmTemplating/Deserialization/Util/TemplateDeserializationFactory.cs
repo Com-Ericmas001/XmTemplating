@@ -10,8 +10,8 @@ namespace Com.Ericmas001.XmTemplating.Deserialization.Util
 {
     public static class TemplateDeserializationFactory
     {
-        private static Dictionary<string, TemplateCommandEnum> m_Commands;
-        private static Dictionary<TemplateCommandEnum, Type> m_CommandDeserializers;
+        private static IDictionary<string, TemplateCommandEnum> m_Commands;
+        private static IDictionary<TemplateCommandEnum, Type> m_CommandDeserializers;
         public static AbstractTemplateElement Deserialize(string command, AbstractTemplateElement root, TemplateTokenizer tokenizer, TemplateDeserializationParms parms)
         {
 
@@ -29,7 +29,7 @@ namespace Com.Ericmas001.XmTemplating.Deserialization.Util
         {
             var commandName = command.ToUpper();
             if (m_Commands == null)
-                InitCommands();
+                m_Commands = InitCommands();
             if (!m_Commands.ContainsKey(commandName))
                 throw new ArgumentOutOfRangeException(nameof(command), $"Command {commandName} not recognized");
             var ce = m_Commands[commandName];
@@ -40,7 +40,7 @@ namespace Com.Ericmas001.XmTemplating.Deserialization.Util
         {
             var commandName = command.ToUpper();
             if (m_CommandDeserializers == null)
-                InitCommandDeserializers();
+                m_CommandDeserializers = InitCommandDeserializers();
 
             if (!m_CommandDeserializers.ContainsKey(cmd))
                 throw new ArgumentOutOfRangeException(nameof(command), $"Command {commandName} ({cmd}) not deserializable");
@@ -53,30 +53,32 @@ namespace Com.Ericmas001.XmTemplating.Deserialization.Util
             return instance;
         }
 
-        private static void InitCommandDeserializers()
+        private static IDictionary<TemplateCommandEnum, Type> InitCommandDeserializers()
         {
-            m_CommandDeserializers = new Dictionary<TemplateCommandEnum, Type>();
+            var cd = new Dictionary<TemplateCommandEnum, Type>();
             foreach (var t in Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof (AbstractTemplateDeserializer).IsAssignableFrom(t)))
             {
                 var att = t.GetCustomAttributes(typeof (TemplateCommandAttribute), true).FirstOrDefault() as TemplateCommandAttribute;
                 if (att == null)
                     continue;
                 foreach (var c in att.Commands)
-                    m_CommandDeserializers.Add(c, t);
+                    cd.Add(c, t);
             }
+            return cd;
         }
 
-        private static void InitCommands()
+        private static IDictionary<string, TemplateCommandEnum> InitCommands()
         {
-            m_Commands = new Dictionary<string, TemplateCommandEnum>();
+            var commands = new Dictionary<string, TemplateCommandEnum>();
             foreach (var tc in EnumUtil.AllValues<TemplateCommandEnum>())
             {
                 var att = tc.GetAttribute<TemplateCommandNameAttribute>();
                 if (att == null)
                     continue;
                 foreach (var commandName in att.CommandNames)
-                    m_Commands.Add(commandName, tc);
+                    commands.Add(commandName, tc);
             }
+            return commands;
         }
     }
 }

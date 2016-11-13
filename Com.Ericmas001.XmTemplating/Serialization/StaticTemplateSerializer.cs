@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Com.Ericmas001.XmTemplating.Attributes;
 using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization
 {
+    [TemplateElement(typeof(ConditionalTemplateElement), false)]
     public class StaticTemplateSerializer : AbstractTemplateSerializer<StaticTemplateElement>
     {
         public StaticTemplateSerializer(StaticTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms) : base(element, variables, arrays, parms)
