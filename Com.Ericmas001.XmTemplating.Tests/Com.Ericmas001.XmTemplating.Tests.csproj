@@ -51,6 +51,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CalculationOperatorsTests.cs" />
+    <Compile Include="VariablesTests.cs" />
     <Compile Include="LoopTests.cs" />
     <Compile Include="ConditionOperatorsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
