@@ -7,10 +7,6 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
 {
     public class EnumeratorVariableExtractor : AbstractVariableExtractor<EnumeratorTemplateElement>
     {
-        public EnumeratorVariableExtractor(EnumeratorTemplateElement element, VariableExtractionParms parms) : base(element, parms)
-        {
-        }
-
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)
         {
             string variable;

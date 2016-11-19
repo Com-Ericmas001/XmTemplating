@@ -6,10 +6,6 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
 {
     public class ConditionalVariableExtractor : AbstractVariableExtractor<ConditionalTemplateElement>
     {
-        public ConditionalVariableExtractor(ConditionalTemplateElement element, VariableExtractionParms parms) : base(element, parms)
-        {
-        }
-
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)
         {
             var opPart = Element.Condition as OperationConditionPart;

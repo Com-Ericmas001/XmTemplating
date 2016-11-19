@@ -7,10 +7,6 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
 {
     public class StaticVariableExtractor : AbstractVariableExtractor<StaticTemplateElement>
     {
-        public StaticVariableExtractor(StaticTemplateElement element, VariableExtractionParms parms) : base(element, parms)
-        {
-        }
-
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)
         {
             var content = variables.Keys.Aggregate(Element.Content, (current, key) => current.Replace("{" + key + "}", ""));

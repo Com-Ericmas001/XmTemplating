@@ -6,10 +6,6 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
 {
     public class RangeVariableExtractor : AbstractVariableExtractor<RangeTemplateElement>
     {
-        public RangeVariableExtractor(RangeTemplateElement element, VariableExtractionParms parms) : base(element, parms)
-        {
-        }
-
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)
         {
             var minV = ExtractVar(variables, Element.Minimum);

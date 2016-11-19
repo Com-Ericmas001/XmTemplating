@@ -8,14 +8,18 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class VariableExtractor : AbstractVariableExtractor<XmTemplateElement>
     {
-        public VariableExtractor(XmTemplateElement element, VariableExtractionParms parms = null) : base(element, parms ?? new VariableExtractionParms())
+        private VariableExtractor()
         {
         }
 
-        public IDictionary<string, ExtractedVariable> ExtractVariables()
+        public static IDictionary<string, ExtractedVariable> ExtractVariables(AbstractTemplateElement element, VariableExtractionParms parms = null)
         {
             var variables = new Dictionary<string, ExtractedVariable>();
-            ExtractVariables(variables);
+
+            var extractor = new VariableExtractor();
+            extractor.Initialize(element, parms ?? new VariableExtractionParms());
+            extractor.ExtractVariables(variables);
+
             return variables.Where(x => !x.Value.IsLocal).ToDictionary(x => x.Key, x=> x.Value);
         }
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)

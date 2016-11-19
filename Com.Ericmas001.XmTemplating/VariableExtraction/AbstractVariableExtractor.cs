@@ -4,12 +4,16 @@ using Com.Ericmas001.XmTemplating.VariableExtraction.Util;
 
 namespace Com.Ericmas001.XmTemplating.VariableExtraction
 {
-    public abstract class AbstractVariableExtractor<T> where T : AbstractTemplateElement
+    public abstract class AbstractVariableExtractor<T> : AbstractVariableExtractor where T : AbstractTemplateElement
+    {
+        public new T Element => (T)base.Element;
+    }
+    public abstract class AbstractVariableExtractor
     {
         public VariableExtractionParms Parms { get; private set; }
-        public T Element { get; private set; }
+        public AbstractTemplateElement Element { get; private set; }
 
-        public AbstractVariableExtractor(T element, VariableExtractionParms parms)
+        public virtual void Initialize(AbstractTemplateElement element, VariableExtractionParms parms)
         {
             Parms = parms;
             Element = element;
