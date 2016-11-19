@@ -1,36 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Reflection;
+using Com.Ericmas001.XmTemplating.Attributes;
 
 namespace Com.Ericmas001.XmTemplating.Serialization.Util
 {
     public static class TemplateSerializationFactory
     {
+        private static IDictionary<Type, KeyValuePair<Type,bool>> m_CommandSerializers;
         public static void Serialize(TextWriter tw, AbstractTemplateElement element, IDictionary<string,string> vars, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms)
         {
-            var cloneVars = new Dictionary<string, string>(vars);
-            var cloneArrays = new Dictionary<string, IEnumerable<string>>(arrays);
+            if (m_CommandSerializers == null)
+                m_CommandSerializers = InitCommandSerializers();
 
-            if (element is StaticTemplateElement)
-                new StaticTemplateSerializer((StaticTemplateElement)element, cloneVars, cloneArrays, parms).Serialize(tw);
+            if (!m_CommandSerializers.ContainsKey(element.GetType()))
+                throw new ArgumentOutOfRangeException(nameof(element), $"ElementType {element.GetType()} not serializable");
+            
+            var typeInfo = m_CommandSerializers[element.GetType()];
+            var ctor = typeInfo.Key.GetConstructor(Type.EmptyTypes);
+            var instance = (AbstractTemplateSerializer)ctor?.Invoke(new object[0]);
+            if (instance == null)
+                throw new ArgumentOutOfRangeException(nameof(element), $"Serializer for {element.GetType()} not instanciable");
 
-            else if (element is ConditionalTemplateElement)
-                new ConditionalTemplateSerializer((ConditionalTemplateElement)element, cloneVars, cloneArrays, parms).Serialize(tw);
-
-            else if (element is EnumeratorTemplateElement)
-                new EnumeratorTemplateSerializer((EnumeratorTemplateElement)element, cloneVars, cloneArrays, parms).Serialize(tw);
-
-            else if (element is RangeTemplateElement)
-                new RangeTemplateSerializer((RangeTemplateElement)element, cloneVars, cloneArrays, parms).Serialize(tw);
-
-            else if (element is EvaluateTemplateElement)
-                new EvaluateTemplateSerializer((EvaluateTemplateElement)element, cloneVars, cloneArrays, parms).Serialize(tw);
-
-            else if (element is DefineTemplateElement)
-                new DefineTemplateSerializer((DefineTemplateElement)element, vars, arrays, parms).Serialize(tw);
-
+            if (typeInfo.Value)
+            {
+                var cloneVars = new Dictionary<string, string>(vars);
+                var cloneArrays = new Dictionary<string, IEnumerable<string>>(arrays);
+                instance.Initialize(element, cloneVars, cloneArrays, parms);
+            }
             else
-                throw new ArgumentOutOfRangeException(nameof(element), $"Serializer not found for element of type {element.GetType()}");
+                instance.Initialize(element, vars, arrays, parms);
+
+            instance.Serialize(tw);
+        }
+        private static IDictionary<Type, KeyValuePair<Type, bool>> InitCommandSerializers()
+        {
+            var cs = new Dictionary<Type, KeyValuePair<Type, bool>>();
+            foreach (var t in Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof(AbstractTemplateSerializer).IsAssignableFrom(t)))
+            {
+                var att = t.GetCustomAttributes(typeof(TemplateElementAttribute), true).FirstOrDefault() as TemplateElementAttribute;
+                if (att == null)
+                    continue;
+                cs.Add(att.Element, new KeyValuePair<Type, bool>(t, att.UseClones));
+            }
+            return cs;
         }
     }
 }

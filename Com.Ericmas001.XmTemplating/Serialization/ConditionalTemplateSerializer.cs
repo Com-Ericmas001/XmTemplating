@@ -9,10 +9,6 @@ namespace Com.Ericmas001.XmTemplating.Serialization
     [TemplateElement(typeof(ConditionalTemplateElement))]
     public class ConditionalTemplateSerializer : AbstractTemplateSerializer<ConditionalTemplateElement>
     {
-        public ConditionalTemplateSerializer(ConditionalTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms) : base(element, variables, arrays, parms)
-        {
-        }
-
         public override void Serialize(TextWriter tw)
         {
             if (ConditionSerializer.Serialize(Element.Condition, new Dictionary<string, string>(Variables), new Dictionary<string, IEnumerable<string>>(Arrays)) == true.ToString())

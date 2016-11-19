@@ -40,7 +40,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util
 
             //Act
             var arr = arrays ?? new Dictionary<string, IEnumerable<string>>();
-            var result = new XmTemplateSerializer(template, vars, arr).SerializeText();
+            var result = XmTemplateSerializer.Serialize(template, vars, arr);
 
             var sw = new StringWriter();
             sw.WriteLine();

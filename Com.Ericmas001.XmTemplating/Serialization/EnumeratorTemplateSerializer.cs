@@ -9,13 +9,9 @@ using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization
 {
-    [TemplateElement(typeof(ConditionalTemplateElement), false)]
+    [TemplateElement(typeof(EnumeratorTemplateElement))]
     public class EnumeratorTemplateSerializer : AbstractTemplateSerializer<EnumeratorTemplateElement>
     {
-        public EnumeratorTemplateSerializer(EnumeratorTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms) : base(element, variables, arrays, parms)
-        {
-        }
-
         public override void Serialize(TextWriter tw)
         {
             var varPart = Element.EnumerationCondition as VariableConditionPart;

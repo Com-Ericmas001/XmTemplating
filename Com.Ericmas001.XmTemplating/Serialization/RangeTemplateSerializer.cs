@@ -6,13 +6,9 @@ using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization
 {
-    [TemplateElement(typeof(ConditionalTemplateElement), false)]
+    [TemplateElement(typeof(RangeTemplateElement))]
     public class RangeTemplateSerializer : AbstractTemplateSerializer<RangeTemplateElement>
     {
-        public RangeTemplateSerializer(RangeTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms) : base(element, variables, arrays, parms)
-        {
-        }
-
         public override void Serialize(TextWriter tw)
         {
             var varPart = Element.Variable;

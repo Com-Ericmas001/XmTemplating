@@ -10,20 +10,24 @@ namespace Com.Ericmas001.XmTemplating.Serialization
     [SuppressMessage("ReSharper", "UnusedMember.Global")]
     public class XmTemplateSerializer : AbstractTemplateSerializer<XmTemplateElement>
     {
-        public XmTemplateSerializer(XmTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms = null) : base(element, variables, arrays, parms ?? new TemplateSerializationParms())
+        private XmTemplateSerializer()
         {
         }
 
-        public string SerializeText()
+        public static string Serialize(XmTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms = null)
         {
             var sw = new StringWriter();
-            Serialize(sw);
+
+            var serializer = new XmTemplateSerializer();
+            serializer.Initialize(element, variables, arrays, parms ?? new TemplateSerializationParms());
+            serializer.Serialize(sw);
+
             string result = sw.ToString();
             string[] lines = result.Split(Environment.NewLine.ToCharArray(), StringSplitOptions.RemoveEmptyEntries);
             return string.Join(Environment.NewLine, lines.Select(CleanLine).Where(x => !string.IsNullOrWhiteSpace(x)).ToArray());
         }
 
-        private string CleanLine(string arg)
+        private static string CleanLine(string arg)
         {
             arg = arg.TrimEnd();
             if (arg.Length > 80)

@@ -6,13 +6,9 @@ using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization
 {
-    [TemplateElement(typeof(ConditionalTemplateElement), false)]
+    [TemplateElement(typeof(EvaluateTemplateElement))]
     public class EvaluateTemplateSerializer : AbstractTemplateSerializer<EvaluateTemplateElement>
     {
-        public EvaluateTemplateSerializer(EvaluateTemplateElement element, IDictionary<string, string> variables, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms) : base(element, variables, arrays, parms)
-        {
-        }
-
         public override void Serialize(TextWriter tw)
         {
             tw.Write(ConditionSerializer.Serialize(Element.Expression, new Dictionary<string, string>(Variables), new Dictionary<string, IEnumerable<string>>(Arrays)));
