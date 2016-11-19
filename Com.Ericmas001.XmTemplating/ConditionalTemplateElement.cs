@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
+using Com.Ericmas001.XmTemplating.Attributes;
 using Com.Ericmas001.XmTemplating.Conditions;
+using Com.Ericmas001.XmTemplating.Serialization;
 
 namespace Com.Ericmas001.XmTemplating
 {
+    [TemplateElementSerializer(typeof(ConditionalTemplateSerializer))]
     public class ConditionalTemplateElement : AbstractTemplateElement
     {
         public AbstractConditionPart Condition { get; set; }

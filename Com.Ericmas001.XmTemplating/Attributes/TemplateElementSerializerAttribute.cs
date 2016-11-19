@@ -5,14 +5,14 @@ using Com.Ericmas001.XmTemplating.Enums;
 
 namespace Com.Ericmas001.XmTemplating.Attributes
 {
-    public class TemplateElementAttribute : Attribute
+    public class TemplateElementSerializerAttribute : Attribute
     {
-        public Type Element { get; set; }
+        public Type Serializer { get; set; }
         public bool UseClones { get; set; }
 
-        public TemplateElementAttribute(Type element, bool useClones = true)
+        public TemplateElementSerializerAttribute(Type serializer, bool useClones = true)
         {
-            Element = element;
+            Serializer = serializer;
             UseClones = useClones;
         }
     }

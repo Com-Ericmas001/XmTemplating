@@ -9,7 +9,7 @@ namespace Com.Ericmas001.XmTemplating.Serialization.Util
 {
     public static class TemplateSerializationFactory
     {
-        private static IDictionary<Type, KeyValuePair<Type,bool>> m_CommandSerializers;
+        private static IDictionary<Type, TemplateElementSerializerAttribute> m_CommandSerializers;
         public static void Serialize(TextWriter tw, AbstractTemplateElement element, IDictionary<string,string> vars, IDictionary<string, IEnumerable<string>> arrays, TemplateSerializationParms parms)
         {
             if (m_CommandSerializers == null)
@@ -19,12 +19,12 @@ namespace Com.Ericmas001.XmTemplating.Serialization.Util
                 throw new ArgumentOutOfRangeException(nameof(element), $"ElementType {element.GetType()} not serializable");
             
             var typeInfo = m_CommandSerializers[element.GetType()];
-            var ctor = typeInfo.Key.GetConstructor(Type.EmptyTypes);
+            var ctor = typeInfo.Serializer.GetConstructor(Type.EmptyTypes);
             var instance = (AbstractTemplateSerializer)ctor?.Invoke(new object[0]);
             if (instance == null)
                 throw new ArgumentOutOfRangeException(nameof(element), $"Serializer for {element.GetType()} not instanciable");
 
-            if (typeInfo.Value)
+            if (typeInfo.UseClones)
             {
                 var cloneVars = new Dictionary<string, string>(vars);
                 var cloneArrays = new Dictionary<string, IEnumerable<string>>(arrays);
@@ -35,15 +35,16 @@ namespace Com.Ericmas001.XmTemplating.Serialization.Util
 
             instance.Serialize(tw);
         }
-        private static IDictionary<Type, KeyValuePair<Type, bool>> InitCommandSerializers()
+
+        private static IDictionary<Type, TemplateElementSerializerAttribute> InitCommandSerializers()
         {
-            var cs = new Dictionary<Type, KeyValuePair<Type, bool>>();
-            foreach (var t in Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof(AbstractTemplateSerializer).IsAssignableFrom(t)))
+            var cs = new Dictionary<Type, TemplateElementSerializerAttribute>();
+            foreach (var t in Assembly.GetExecutingAssembly().GetTypes().Where(t => typeof(AbstractTemplateElement).IsAssignableFrom(t)))
             {
-                var att = t.GetCustomAttributes(typeof(TemplateElementAttribute), true).FirstOrDefault() as TemplateElementAttribute;
+                var att = t.GetCustomAttributes(typeof(TemplateElementSerializerAttribute), true).FirstOrDefault() as TemplateElementSerializerAttribute;
                 if (att == null)
                     continue;
-                cs.Add(att.Element, new KeyValuePair<Type, bool>(t, att.UseClones));
+                cs.Add(t, att);
             }
             return cs;
         }

@@ -9,7 +9,6 @@ using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization
 {
-    [TemplateElement(typeof(EnumeratorTemplateElement))]
     public class EnumeratorTemplateSerializer : AbstractTemplateSerializer<EnumeratorTemplateElement>
     {
         public override void Serialize(TextWriter tw)

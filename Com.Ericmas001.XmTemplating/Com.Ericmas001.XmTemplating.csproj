@@ -49,7 +49,6 @@
     <Compile Include="AbstractTemplateElement.cs" />
     <Compile Include="Attributes\AvailableToAttribute.cs" />
     <Compile Include="Attributes\TemplateElementSerializerAttribute.cs" />
-    <Compile Include="Attributes\TemplateElementAttribute.cs" />
     <Compile Include="Attributes\ValueTypeAttribute.cs" />
     <Compile Include="Builder\XmAttribute.cs" />
     <Compile Include="Builder\XmTemplate.cs" />

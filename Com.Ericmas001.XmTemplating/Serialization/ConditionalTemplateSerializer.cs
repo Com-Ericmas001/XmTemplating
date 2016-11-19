@@ -6,7 +6,6 @@ using Com.Ericmas001.XmTemplating.Serialization.Util;
 
 namespace Com.Ericmas001.XmTemplating.Serialization
 {
-    [TemplateElement(typeof(ConditionalTemplateElement))]
     public class ConditionalTemplateSerializer : AbstractTemplateSerializer<ConditionalTemplateElement>
     {
         public override void Serialize(TextWriter tw)
