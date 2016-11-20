@@ -8,7 +8,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Com.Ericmas001.XmTemplating.Tests.Util
 {
-    internal static class EvaluateUtil
+    internal static class TemplateUtil
     {
         public static void EvaluateBooleanCondition(bool expectedResult, string condition, IDictionary<string, string> vars, IDictionary<string, IEnumerable<string>> arrays = null)
         {
@@ -37,7 +37,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util
             var sw = new StringWriter();
 
             //Act
-            var result = EvaluateUtil.ExecuteTemplate(templateStr, sw);
+            var result = TemplateUtil.ExecuteTemplate(templateStr, sw);
 
             //Assert
             Assert.AreEqual(expected, result, sw.ToString());

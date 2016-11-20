@@ -50,12 +50,12 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="CalculationOperatorsTests.cs" />
-    <Compile Include="VariablesTests.cs" />
-    <Compile Include="LoopTests.cs" />
-    <Compile Include="ConditionOperatorsTests.cs" />
+    <Compile Include="TemplateElements\CalculationOperatorsTests.cs" />
+    <Compile Include="TemplateElements\VariablesTests.cs" />
+    <Compile Include="TemplateElements\LoopTests.cs" />
+    <Compile Include="TemplateElements\ConditionOperatorsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Util\EvaluateUtil.cs" />
+    <Compile Include="Util\TemplateUtil.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ericmas001.XmTemplating\Com.Ericmas001.XmTemplating.csproj">
