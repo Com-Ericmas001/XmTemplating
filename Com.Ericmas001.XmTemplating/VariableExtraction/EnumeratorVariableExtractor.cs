@@ -14,9 +14,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
             if (opCond != null)
             {
                 variable = ((VariableConditionPart) opCond.LeftSide).VariableName;
-                //NoteLocalVar(variables, variable);
-                foreach (var val in ((GroupedConditionPart)opCond.RightSide).Values)
-                    NoteVars((VariableConditionPart)opCond.LeftSide, val, variables);
+                NoteVars((VariableConditionPart)opCond.LeftSide, opCond.RightSide, variables);
             }
             else
             {

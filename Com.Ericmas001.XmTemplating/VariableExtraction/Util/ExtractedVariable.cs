@@ -14,6 +14,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
         public List<string> Values { get; private set; }
         public List<ExtractedVariable> Links { get; private set; }
         public bool IsArray { get; set; }
+        public bool IsUsingListValues { get; set; }
         public bool IsLocal { get; set; }
         public VariableTypeEnum GuessedType { get; set; }
         public ExtractedVariable(string name)
@@ -23,6 +24,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
             Links = new List<ExtractedVariable>();
             Guid = Guid.NewGuid();
             IsLocal = false;
+            IsUsingListValues = false;
         }
 
         public override string ToString()
@@ -47,6 +49,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
             NoteLinks(links, this);
             links.Remove(this);
             Values.AddRange(links.SelectMany(x => x.Values));
+            IsUsingListValues = links.All(x => x.IsUsingListValues);
             Values = Values.Distinct().ToList();
             Links.Clear();
 
@@ -62,7 +65,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
             if (!Values.Any())
                 return VariableTypeEnum.Text;
 
-            if (Values.All(v => v.ToCharArray().All(char.IsDigit)))
+            if (!IsUsingListValues && Values.All(v => v.ToCharArray().All(char.IsDigit)))
                 return VariableTypeEnum.Number;
 
             bool bidonBool;

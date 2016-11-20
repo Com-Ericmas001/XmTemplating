@@ -8,8 +8,16 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
     {
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)
         {
+            var vPart = Element.Condition as VariableConditionPart;
+            if (vPart != null)
+            {
+                var xV = new ExtractedVariable(vPart.VariableName);
+                xV.Values.Add(true.ToString());
+                variables.Add(xV.Name, xV);
+            }
+
             var opPart = Element.Condition as OperationConditionPart;
-            if(opPart != null)
+            if (opPart != null)
                 ExtractVars(opPart, variables);
 
             foreach (var elem in Element.ConditionTrueElements)

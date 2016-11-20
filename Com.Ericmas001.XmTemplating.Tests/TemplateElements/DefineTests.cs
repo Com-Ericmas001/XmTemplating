@@ -6,7 +6,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 {
     [TestClass]
-    public class VariablesTests
+    public class DefineTests
     {
         [TestMethod]
         public void TestDefine()

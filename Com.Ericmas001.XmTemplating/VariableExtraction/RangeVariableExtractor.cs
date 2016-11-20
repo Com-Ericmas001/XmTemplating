@@ -8,17 +8,28 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
     {
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)
         {
-            var minV = ExtractVar(variables, Element.Minimum);
-            var maxV = ExtractVar(variables, Element.Maximum);
             var itVar = GetVar(variables, Element.Variable.VariableName);
+            itVar.Values.Add("0");
 
-            if (minV != null && maxV != null)
+            var minV = ExtractVar(variables, Element.Minimum);
+            if (minV != null)
             {
                 minV.Links.Add(itVar);
-                maxV.Links.Add(itVar);
                 itVar.Links.Add(minV);
+            }
+            var minL = Element.Minimum as LiteralConditionPart;
+            if(minL != null)
+                itVar.Values.Add(minL.Value);
+
+            var maxV = ExtractVar(variables, Element.Maximum);
+            if (maxV != null)
+            {
+                maxV.Links.Add(itVar);
                 itVar.Links.Add(maxV);
             }
+            var maxL = Element.Maximum as LiteralConditionPart;
+            if (maxL != null)
+                itVar.Values.Add(maxL.Value);
 
             foreach (var elem in Element.Elements)
                 VariableExtractionFactory.ExtractVariables(elem, variables, Parms);

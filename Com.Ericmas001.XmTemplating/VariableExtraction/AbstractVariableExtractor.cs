@@ -21,9 +21,12 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
 
         public abstract void ExtractVariables(IDictionary<string, ExtractedVariable> variables );
 
-        protected static void NoteVar(IDictionary<string, ExtractedVariable> variables, string key, string value)
+        protected static void NoteVar(IDictionary<string, ExtractedVariable> variables, string key, string value, bool fromList = false)
         {
-            GetVar(variables, key).Values.Add(value);
+            var v = GetVar(variables, key);
+            v.Values.Add(value);
+            if (fromList)
+                v.IsUsingListValues = true;
         }
         protected static void NoteArrayVar(IDictionary<string, ExtractedVariable> variables, string key)
         {
@@ -37,16 +40,16 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
             return variables[key];
         }
 
-        protected static void NoteVars(VariableConditionPart opPartLeftV, AbstractConditionPart opPart, IDictionary<string, ExtractedVariable> variables)
+        protected static void NoteVars(VariableConditionPart opPartLeftV, AbstractConditionPart opPart, IDictionary<string, ExtractedVariable> variables, bool fromList = false)
         {
             var opPartRightL = opPart as LiteralConditionPart;
             var opPartRightG = opPart as GroupedConditionPart;
 
             if (opPartRightL != null)
-                NoteVar(variables, opPartLeftV.VariableName, opPartRightL.Value);
+                NoteVar(variables, opPartLeftV.VariableName, opPartRightL.Value, fromList);
             else if (opPartRightG != null)
                 foreach (var cp in opPartRightG.Values)
-                    NoteVars(opPartLeftV, cp, variables);
+                    NoteVars(opPartLeftV, cp, variables, true);
         }
     }
 }
