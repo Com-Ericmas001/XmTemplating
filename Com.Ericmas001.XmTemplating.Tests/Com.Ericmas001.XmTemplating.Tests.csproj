@@ -55,6 +55,7 @@
     <Compile Include="TemplateElements\LoopTests.cs" />
     <Compile Include="TemplateElements\ConditionOperatorsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Util\ExtractionVarUtil.cs" />
     <Compile Include="Util\TemplateUtil.cs" />
     <Compile Include="VariableExtraction\ExtractiomTests.cs" />
   </ItemGroup>

@@ -17,10 +17,10 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
         public bool IsUsingListValues { get; set; }
         public bool IsLocal { get; set; }
         public VariableTypeEnum GuessedType { get; set; }
-        public ExtractedVariable(string name)
+        public ExtractedVariable(string name, params string[] initialValues)
         {
             Name = name;
-            Values = new List<string>();
+            Values = new List<string>(initialValues);
             Links = new List<ExtractedVariable>();
             Guid = Guid.NewGuid();
             IsLocal = false;
@@ -48,10 +48,13 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
             var links = new List<ExtractedVariable>(new[] { this });
             NoteLinks(links, this);
             links.Remove(this);
-            Values.AddRange(links.SelectMany(x => x.Values));
-            IsUsingListValues = links.All(x => x.IsUsingListValues);
-            Values = Values.Distinct().ToList();
-            Links.Clear();
+            if (links.Any())
+            {
+                Values.AddRange(links.SelectMany(x => x.Values));
+                IsUsingListValues = links.All(x => x.IsUsingListValues);
+                Values = Values.Distinct().ToList();
+                Links.Clear();
+            }
 
         }
         public void GuessType()

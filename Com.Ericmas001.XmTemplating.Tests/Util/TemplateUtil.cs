@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using Com.Ericmas001.XmTemplating.Deserialization;
 using Com.Ericmas001.XmTemplating.Serialization;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
