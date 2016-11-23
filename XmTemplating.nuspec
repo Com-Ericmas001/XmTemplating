@@ -13,6 +13,9 @@
         <releaseNotes>Development Version</releaseNotes>
         <copyright />
         <language>en</language>
+        <dependencies>
+            <dependency id="Com.Ericmas001.Common" version="0.4.1" />
+        </dependencies>
     </metadata>
     <files>
     	<file src="Com.Ericmas001.XmTemplating\bin\$configuration$\Com.Ericmas001.XmTemplating.dll" target="lib\net40\" />
