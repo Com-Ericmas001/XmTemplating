@@ -1,4 +1,5 @@
 language: csharp
 
 script:
+    - nuget restore ./Com.Ericmas001.XmTemplating/packages.config
     - xbuild ./Com.Ericmas001.XmTemplating/Com.Ericmas001.XmTemplating.csproj
