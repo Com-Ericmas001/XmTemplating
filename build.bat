@@ -14,6 +14,7 @@ if "%nuget%" == "" (
 	set nuget=nuget
 )
 
+call %NuGet% restore Com.Ericmas001.XmTemplating\packages.config -OutputDirectory %cd%\packages -NonInteractive
 msbuild XmTemplating.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
 
 mkdir Build
