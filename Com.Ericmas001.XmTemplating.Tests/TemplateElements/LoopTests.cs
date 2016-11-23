@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Com.Ericmas001.XmTemplating.Tests.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 {
-    [TestClass]
+    [TestFixture]
     public class LoopTests
     {
-        [TestMethod]
+        [Test]
         public void TestForLoop()
         {
             string expected = string.Concat(Enumerable.Range(0, 20).Select(x => x.ToString()));
@@ -47,7 +47,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateFor(expected, "{I} FROM {MIN} - {OFFSET} UNTIL {MAX}", "{I}", new Dictionary<string, string> { { "MIN", "1" }, { "MAX", "20" }, { "OFFSET", "1" } });
         }
 
-        [TestMethod]
+        [Test]
         public void TestForeachLoop()
         {
             string[] stuff = { "Hello", "Hi", "Hey", "Goodbye", "ByeBye", "See ya" };

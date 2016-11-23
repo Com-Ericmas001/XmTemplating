@@ -1,5 +1,2 @@
 language: csharp
-
-script:
-    - nuget restore XmTemplating.sln
-    - xbuild ./Com.Ericmas001.XmTemplating/Com.Ericmas001.XmTemplating.csproj
+solution: XmTemplating.sln

@@ -1,13 +1,13 @@
 ﻿using System.Collections.Generic;
 using Com.Ericmas001.XmTemplating.Tests.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 {
-    [TestClass]
+    [TestFixture]
     public class ConditionOperatorsTests
     {
-        [TestMethod]
+        [Test]
         public void TestEqualSuccess()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} = \"42\"", new Dictionary<string, string> {{"V", "42"}});
@@ -15,7 +15,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateBooleanCondition(true, "{V} EQ \"42\"", new Dictionary<string, string> {{"V", "42"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestEqualFails()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} = \"42\"", new Dictionary<string, string> {{"V", "21"}});
@@ -23,7 +23,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateBooleanCondition(false, "{V} EQ \"42\"", new Dictionary<string, string> {{"V", "21"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestNotEqualSuccess()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} != \"42\"", new Dictionary<string, string> {{"V", "21"}});
@@ -32,7 +32,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateBooleanCondition(true, "{V} NE \"42\"", new Dictionary<string, string> {{"V", "21"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestNotEqualFails()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} != \"42\"", new Dictionary<string, string> {{"V", "42"}});
@@ -41,91 +41,91 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateBooleanCondition(false, "{V} NE \"42\"", new Dictionary<string, string> {{"V", "42"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestLowerThanSuccess()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} < \"42\"", new Dictionary<string, string> {{"V", "21"}});
             TemplateUtil.EvaluateBooleanCondition(true, "{V} LT \"42\"", new Dictionary<string, string> {{"V", "21"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestLowerThanFailsBecauseEqual()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} < \"42\"", new Dictionary<string, string> {{"V", "42"}});
             TemplateUtil.EvaluateBooleanCondition(false, "{V} LT \"42\"", new Dictionary<string, string> {{"V", "42"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestLowerThanFailsBecauseGreater()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} < \"42\"", new Dictionary<string, string> {{"V", "84"}});
             TemplateUtil.EvaluateBooleanCondition(false, "{V} LT \"42\"", new Dictionary<string, string> {{"V", "84"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestLowerEqualSuccessBecauseLower()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} <= \"42\"", new Dictionary<string, string> {{"V", "21"}});
             TemplateUtil.EvaluateBooleanCondition(true, "{V} LE \"42\"", new Dictionary<string, string> {{"V", "21"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestLowerEqualSuccessBecauseEqual()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} <= \"42\"", new Dictionary<string, string> {{"V", "42"}});
             TemplateUtil.EvaluateBooleanCondition(true, "{V} LE \"42\"", new Dictionary<string, string> {{"V", "42"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestLowerEqualFailsBecauseGreater()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} <= \"42\"", new Dictionary<string, string> {{"V", "84"}});
             TemplateUtil.EvaluateBooleanCondition(false, "{V} LE \"42\"", new Dictionary<string, string> {{"V", "84"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestGreaterEqualSuccessBecauseGreater()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} >= \"42\"", new Dictionary<string, string> {{"V", "84"}});
             TemplateUtil.EvaluateBooleanCondition(true, "{V} GE \"42\"", new Dictionary<string, string> {{"V", "84"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestGreaterEqualSuccessBecauseEqual()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} >= \"42\"", new Dictionary<string, string> {{"V", "42"}});
             TemplateUtil.EvaluateBooleanCondition(true, "{V} GE \"42\"", new Dictionary<string, string> {{"V", "42"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestGreaterEqualFailsBecauseLower()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} >= \"42\"", new Dictionary<string, string> {{"V", "21"}});
             TemplateUtil.EvaluateBooleanCondition(false, "{V} GE \"42\"", new Dictionary<string, string> {{"V", "21"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestGreaterThanSuccessBecauseGreater()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} > \"42\"", new Dictionary<string, string> {{"V", "84"}});
             TemplateUtil.EvaluateBooleanCondition(true, "{V} GT \"42\"", new Dictionary<string, string> {{"V", "84"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestGreaterThanFailsBecauseEqual()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} > \"42\"", new Dictionary<string, string> {{"V", "42"}});
             TemplateUtil.EvaluateBooleanCondition(false, "{V} GT \"42\"", new Dictionary<string, string> {{"V", "42"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestGreaterThanFailsBecauseLower()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} > \"42\"", new Dictionary<string, string> {{"V", "21"}});
             TemplateUtil.EvaluateBooleanCondition(false, "{V} GT \"42\"", new Dictionary<string, string> {{"V", "21"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestAndSuccessBecauseBothTrue()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> {{"V", "True"}});
@@ -136,7 +136,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestAndFailsBecauseOnlyOneTrue()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" AND \"True\" = \"True\"", new Dictionary<string, string> {{"V", "False"}});
@@ -147,7 +147,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestAndFailsBecauseBothFalse()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" AND \"False\" = \"True\"", new Dictionary<string, string> {{"V", "False"}});
@@ -158,7 +158,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestOrSuccessBecauseBothTrue()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> {{"V", "True"}});
@@ -169,7 +169,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestOrSuccessBecauseOnlyOneTrue()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} = \"True\" OR \"True\" = \"True\"", new Dictionary<string, string> {{"V", "False"}});
@@ -180,7 +180,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestOrFailsBecauseBothFalse()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} = \"True\" OR \"False\" = \"True\"", new Dictionary<string, string> {{"V", "False"}});
@@ -191,13 +191,13 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestTrue()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V}", new Dictionary<string, string> {{"V", "True"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestFalse()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V}", new Dictionary<string, string> {{"V", "False"}});
@@ -205,7 +205,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateIf(false, "{V}", new Dictionary<string, string> {{"V", "SpongeBob"}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestStuffThatIsIn()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} IN (\"Hi\",\"Hello\",\"Hey\")", new Dictionary<string, string> {{"V", "Hi"}});
@@ -214,14 +214,14 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateBooleanCondition(true, "{V} IN {Vs}", new Dictionary<string, string> {{"V", "Hey"}}, new Dictionary<string, IEnumerable<string>> {{"Vs", new[] {"Hi", "Hello", "Hey"}}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestStuffThatIsNotIn()
         {
             TemplateUtil.EvaluateBooleanCondition(false, "{V} IN (\"Hi\",\"Hello\",\"Hey\")", new Dictionary<string, string> {{"V", "Goodbye"}});
             TemplateUtil.EvaluateBooleanCondition(false, "{V} IN {Vs}", new Dictionary<string, string> {{"V", "Goodbye"}}, new Dictionary<string, IEnumerable<string>> {{"Vs", new[] {"Hi", "Hello", "Hey"}}});
         }
 
-        [TestMethod]
+        [Test]
         public void TestAndOrPriorities()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "\"True\" OR \"True\" AND \"False\"", new Dictionary<string, string>());
@@ -234,7 +234,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 
         }
 
-        [TestMethod]
+        [Test]
         public void TestCombinationsOfOr()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} > \"10\" OR {X} IN {Xs} OR {Y} + \"42\" < \"3\" * \"21\" - {Z}",
@@ -308,7 +308,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
                 );
         }
 
-        [TestMethod]
+        [Test]
         public void TestCombinationsOfAnd()
         {
             TemplateUtil.EvaluateBooleanCondition(true, "{V} > \"10\" AND {X} IN {Xs} AND {Y} + \"42\" < \"3\" * \"21\" - {Z}",

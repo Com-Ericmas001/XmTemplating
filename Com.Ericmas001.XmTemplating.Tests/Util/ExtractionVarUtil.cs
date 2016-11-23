@@ -4,7 +4,7 @@ using System.Linq;
 using Com.Ericmas001.XmTemplating.Deserialization;
 using Com.Ericmas001.XmTemplating.VariableExtraction;
 using Com.Ericmas001.XmTemplating.VariableExtraction.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Com.Ericmas001.XmTemplating.Tests.Util
 {

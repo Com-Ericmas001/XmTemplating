@@ -2,7 +2,7 @@
 using System.IO;
 using Com.Ericmas001.XmTemplating.Deserialization;
 using Com.Ericmas001.XmTemplating.Serialization;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Com.Ericmas001.XmTemplating.Tests.Util
 {

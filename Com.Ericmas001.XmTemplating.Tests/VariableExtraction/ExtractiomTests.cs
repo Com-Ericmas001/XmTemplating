@@ -1,17 +1,14 @@
-﻿using System;
-using System.IO;
-using System.Reflection;
-using Com.Ericmas001.XmTemplating.Enums;
+﻿using Com.Ericmas001.XmTemplating.Enums;
 using Com.Ericmas001.XmTemplating.Tests.Util;
 using Com.Ericmas001.XmTemplating.VariableExtraction.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
 {
-    [TestClass]
+    [TestFixture]
     public class ExtractiomTests
     {
-        [TestMethod]
+        [Test]
         public void SimpleExtractionTest()
         {
             ExtractionVarUtil.TestExtraction("{X}", new ExtractedVariable("X") { GuessedType = VariableTypeEnum.Text });
@@ -21,14 +18,14 @@ namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
             ExtractionVarUtil.TestExtraction("<EVAL [{N} = \"42\"] />", new ExtractedVariable("N", "42") { GuessedType = VariableTypeEnum.Number });
         }
 
-        [TestMethod]
+        [Test]
         public void NumberExtractionTest()
         {
             ExtractionVarUtil.TestExtraction("<EVAL [{N} = \"42\" OR {N} = \"21\" OR {N} = \"84\"] />", new ExtractedVariable("N", "42", "21", "84") { GuessedType = VariableTypeEnum.Number });
             ExtractionVarUtil.TestExtraction("<EVAL [{N} = \"84\" OR ({N} > \"21\" AND {N} < \"42\")] />", new ExtractedVariable("N", "42", "21", "84") { GuessedType = VariableTypeEnum.Number });
         }
 
-        [TestMethod]
+        [Test]
         public void StringsAndInOperatorsExtractionTest()
         {
             var stuff = new[] {"Cool!", "LessCool!", "MoreCool!"};
@@ -41,7 +38,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
             ExtractionVarUtil.TestExtraction(templates, new ExtractedVariable("S", stuff) {GuessedType = VariableTypeEnum.ListItem});
         }
 
-        [TestMethod]
+        [Test]
         public void NumbersAndInOperatorsExtractionTest()
         {
             var stuff = new[] {"00", "12", "42"};
@@ -54,7 +51,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
             ExtractionVarUtil.TestExtraction(templates, new ExtractedVariable("N", stuff) {GuessedType = VariableTypeEnum.ListItem});
         }
 
-        [TestMethod]
+        [Test]
         public void IntVarFromForLoop()
         {
             ExtractionVarUtil.TestExtraction("<FOR [{N} FROM \"1\" TO \"42\"]><IF [{X} < {N}]>{X}</IF></FOR>", new ExtractedVariable("X", "0", "1", "42") {GuessedType = VariableTypeEnum.Number});
@@ -85,7 +82,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
             });
         }
 
-        //[TestMethod]
+        //[Test]
         //public void BigUglyTest()
         //{
         //    string dirPath = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));

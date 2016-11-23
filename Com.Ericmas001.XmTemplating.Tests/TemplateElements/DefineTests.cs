@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Linq;
 using Com.Ericmas001.XmTemplating.Tests.Util;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
 {
-    [TestClass]
+    [TestFixture]
     public class DefineTests
     {
-        [TestMethod]
+        [Test]
         public void TestDefine()
         {
             var expectedResult = "COOL!";
@@ -23,7 +23,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.TemplateElements
             TemplateUtil.EvaluateDefine(expectedResult, "<DEFINE {Var}>" + expectedResult + "</DEFINE><FOR [{I} From \"1\" To \"5\"]><DEFINE {Var}>NOT COOL</DEFINE></FOR>{Var}");
             TemplateUtil.EvaluateDefine(expectedResult, "<DEFINE {Var}>" + expectedResult + "</DEFINE><FOREACH [{X} IN (\"A\",\"B\",\"C\")]><DEFINE {Var}>NOT COOL</DEFINE></FOREACH>{Var}");
         }
-        [TestMethod]
+        [Test]
         public void TestDefineArray()
         {
             var stuff = new[] { "A", "B", "C", "D", "E", "F" };
