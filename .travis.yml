@@ -1,2 +1,4 @@
 language: csharp
-solution: XmTemplating.sln
+
+script:
+    - xbuild ./Com.Ericmas001.XmTemplating/Com.Ericmas001.XmTemplating.csproj
