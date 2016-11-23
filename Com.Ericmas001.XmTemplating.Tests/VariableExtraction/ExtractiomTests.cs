@@ -11,7 +11,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
         [Test]
         public void SimpleExtractionTest()
         {
-            ExtractionVarUtil.TestExtraction("{X}", new ExtractedVariable("X") { GuessedType = VariableTypeEnum.Text });
+            ExtractionVarUtil.TestExtraction("{X}", new ExtractedVariable("X") { GuessedType = VariableTypeEnum.Number });
             ExtractionVarUtil.TestExtraction("<EVAL [{S} = \"Cool!\"] />", new ExtractedVariable("S", "Cool!") { GuessedType = VariableTypeEnum.ListItem });
             ExtractionVarUtil.TestExtraction("<EVAL [{B} = \"True\"] />", new ExtractedVariable("B", "True") { GuessedType = VariableTypeEnum.Boolean });
             ExtractionVarUtil.TestExtraction("<IF [{B}]></IF>", new ExtractedVariable("B", "True") { GuessedType = VariableTypeEnum.Boolean });
