@@ -22,7 +22,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util
 
                 //Assert
                 Assert.AreEqual(eVars.Count(), result.Count, template);
-                Assert.AreEqual(false, result.Keys.Except(eVars.Select(x => x.Name)).Any(), template);
+                Assert.AreEqual(false, result.Keys.Except(eVars.Select(x => x.Name)).Any(), Environment.NewLine, template);
 
                 foreach (var xVar in eVars)
                 {

@@ -1,4 +1,7 @@
-﻿using Com.Ericmas001.XmTemplating.Enums;
+﻿using System;
+using System.IO;
+using System.Reflection;
+using Com.Ericmas001.XmTemplating.Enums;
 using Com.Ericmas001.XmTemplating.Tests.Util;
 using Com.Ericmas001.XmTemplating.VariableExtraction.Util;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -11,11 +14,18 @@ namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
         [TestMethod]
         public void SimpleExtractionTest()
         {
-            ExtractionVarUtil.TestExtraction("{X}", new ExtractedVariable("X") {GuessedType = VariableTypeEnum.Text});
-            ExtractionVarUtil.TestExtraction("<EVAL [{S} = \"Cool!\"] />", new ExtractedVariable("S", "Cool!") {GuessedType = VariableTypeEnum.ListItem});
-            ExtractionVarUtil.TestExtraction("<EVAL [{B} = \"True\"] />", new ExtractedVariable("B", "True") {GuessedType = VariableTypeEnum.Boolean});
-            ExtractionVarUtil.TestExtraction("<IF [{B}]></IF>", new ExtractedVariable("B", "True") {GuessedType = VariableTypeEnum.Boolean});
-            ExtractionVarUtil.TestExtraction("<EVAL [{N} = \"42\"] />", new ExtractedVariable("N", "42") {GuessedType = VariableTypeEnum.Number});
+            ExtractionVarUtil.TestExtraction("{X}", new ExtractedVariable("X") { GuessedType = VariableTypeEnum.Text });
+            ExtractionVarUtil.TestExtraction("<EVAL [{S} = \"Cool!\"] />", new ExtractedVariable("S", "Cool!") { GuessedType = VariableTypeEnum.ListItem });
+            ExtractionVarUtil.TestExtraction("<EVAL [{B} = \"True\"] />", new ExtractedVariable("B", "True") { GuessedType = VariableTypeEnum.Boolean });
+            ExtractionVarUtil.TestExtraction("<IF [{B}]></IF>", new ExtractedVariable("B", "True") { GuessedType = VariableTypeEnum.Boolean });
+            ExtractionVarUtil.TestExtraction("<EVAL [{N} = \"42\"] />", new ExtractedVariable("N", "42") { GuessedType = VariableTypeEnum.Number });
+        }
+
+        [TestMethod]
+        public void NumberExtractionTest()
+        {
+            ExtractionVarUtil.TestExtraction("<EVAL [{N} = \"42\" OR {N} = \"21\" OR {N} = \"84\"] />", new ExtractedVariable("N", "42", "21", "84") { GuessedType = VariableTypeEnum.Number });
+            ExtractionVarUtil.TestExtraction("<EVAL [{N} = \"84\" OR ({N} > \"21\" AND {N} < \"42\")] />", new ExtractedVariable("N", "42", "21", "84") { GuessedType = VariableTypeEnum.Number });
         }
 
         [TestMethod]
@@ -74,5 +84,27 @@ namespace Com.Ericmas001.XmTemplating.Tests.VariableExtraction
                 new ExtractedVariable("max", "0") {GuessedType = VariableTypeEnum.Number}
             });
         }
+
+        //[TestMethod]
+        //public void BigUglyTest()
+        //{
+        //    string dirPath = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
+        //    string filePath = Path.Combine(dirPath, "Resources", "TemplateTest.txt");
+        //    string template = File.ReadAllText(filePath);
+
+        //    ExtractionVarUtil.TestExtraction(template, new []
+        //    {
+        //        new ExtractedVariable("Chocolate", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("Fruit", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("Person", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("BigNumber", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("CoolStuff", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("DoraCar", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("Max1", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("Max2", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("Min1", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true},
+        //        new ExtractedVariable("Min2", "Dark", "Milk", "White") {GuessedType = VariableTypeEnum.ListItem, IsArray = true}
+        //    });
+        //}
     }
 }

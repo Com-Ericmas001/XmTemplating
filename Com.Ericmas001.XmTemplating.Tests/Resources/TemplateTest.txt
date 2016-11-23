@@ -1,0 +1,54 @@
+﻿<DEFINE {Animal}>Rabbit</DEFINE>
+<DEFINE_ARRAY {Choice}>
+Choice1
+Choice2
+Choice3
+BadChoice
+</DEFINE_ARRAY>
+Hey <IF [{IsMyBuddy} == "True"]>buddy !<:ELSE:>you,</IF>
+This is some cool stuff: {CoolStuff}
+
+Cars:
+<FOREACH [{Car} IN ("Mercedes", "Kia", "Subaru", "Dodge", "Mitsubichi")]>
+- {Car}   <if [{Car} = {MyCar}]>(---- MINE</if>
+</FOREACH>
+
+Choices:  
+<FOREACH {Choice}>
+- {Choice}
+</FOREACH>
+
+People
+<FOREACH {Person}>
+Hello I am {Person} ({BigNumber}) <if [{BigNumber} * "3" > "5"]>VeryBig Number!!! <EVAL [{BigNumber} * "5"] /> {Animal}</if>
+
+*******
+<FOREACH {Chocolate}>
+<FOREACH {Fruit}>    
+<IF [({Person} != "Bob" && {Person} <> "Billy") AND ({Fruit} = "Orange" OR "Kiwi" == {Fruit}) OR ({Fruit} EQ "Pineapple" || {Fruit} EQ "Apple")]>
+* This {Person} really appreciates {Fruit}
+</IF>
+<IF [{Chocolate} == "White" AND {Fruit} == "Lemon" OR {Chocolate} == "Dark" AND {Fruit} == "Strawberry"]>
+*  The mix of {Chocolate} Chocolate and {Fruit} is perfect
+<:ELSE:>
+<IF [{Chocolate} IN ("White", "Milk" )]>    
+*  this is sugary chocolate because it's {Chocolate}
+<:ELSE:>         
+*  this is bitter chocolate because it's {Chocolate}
+</IF>   
+*  this is a cool fruit: {Fruit}
+</IF>
+</FOREACH>
+</FOREACH>
+</FOREACH>
+*******
+<FOR [{I} FROM {Min1} TO {Max1} - "1"]>
+<DEFINE {FAV}><IF [{I} = "42"]>My Favorite Number</IF></DEFINE> 
+-)   Counting From {Min1} TO {Max1} : {I}  {FAV}    
+</FOR>  
+ 
+<FOR [{I} FROM {Min2} UNTIL {Max2} + "1"]>
+<DEFINE {FAV}><IF [{I} = "42"]>My Favorite Number</IF></DEFINE> 
+-)   Counting From {Min2} UNTIL {Max2} : {I}  {FAV}    
+</FOR>
+<if [{DoraCar} = {MyCar}]>{DoraCar} is like mine </if>
