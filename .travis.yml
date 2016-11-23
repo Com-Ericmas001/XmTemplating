@@ -1,8 +1,8 @@
 language: csharp
 solution: XmTemplating.sln
-before_install:
+install:
   - sudo apt-get install nunit-console
-before_script:
   - nuget restore XmTemplating.sln
-after_script:
+script:
+  - xbuild /p:Configuration=Release XmTemplating.sln
   - nunit-console Com.Ericmas001.XmTemplating.Tests/bin/Release/Com.Ericmas001.XmTemplating.Tests.dll
