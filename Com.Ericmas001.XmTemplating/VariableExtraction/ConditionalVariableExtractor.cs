@@ -12,7 +12,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
             if (vPart != null)
             {
                 var xV = new ExtractedVariable(vPart.VariableName);
-                xV.Values.Add(true.ToString());
+                xV.AddValue(true.ToString());
                 variables.Add(xV.Name, xV);
             }
 

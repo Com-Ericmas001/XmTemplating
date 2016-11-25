@@ -31,7 +31,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util
                     Assert.AreEqual(xVar.Name, v.Name, desc);
                     Assert.AreEqual(xVar.GuessedType, v.GuessedType, desc);
                     Assert.AreEqual(xVar.IsArray, v.IsArray, desc);
-                    Assert.AreEqual(xVar.Values.Count, v.Values.Count, desc);
+                    Assert.AreEqual(xVar.Values.Count(), v.Values.Count(), desc);
                     Assert.AreEqual(false, xVar.Values.Except(v.Values).Any(), desc);
                 }
             }

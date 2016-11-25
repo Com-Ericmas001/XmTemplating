@@ -9,27 +9,17 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
         public override void ExtractVariables(IDictionary<string, ExtractedVariable> variables)
         {
             var itVar = GetVar(variables, Element.Variable.VariableName);
-            itVar.Values.Add("0");
+            itVar.AddValue("0");
 
-            var minV = ExtractVar(variables, Element.Minimum);
-            if (minV != null)
-            {
-                minV.Links.Add(itVar);
-                itVar.Links.Add(minV);
-            }
+            ExtractVar(variables, Element.Minimum, itVar);
             var minL = Element.Minimum as LiteralConditionPart;
             if(minL != null)
-                itVar.Values.Add(minL.Value);
+                itVar.AddValue(minL.Value);
 
-            var maxV = ExtractVar(variables, Element.Maximum);
-            if (maxV != null)
-            {
-                maxV.Links.Add(itVar);
-                itVar.Links.Add(maxV);
-            }
+            ExtractVar(variables, Element.Maximum, itVar);
             var maxL = Element.Maximum as LiteralConditionPart;
             if (maxL != null)
-                itVar.Values.Add(maxL.Value);
+                itVar.AddValue(maxL.Value);
 
             foreach (var elem in Element.Elements)
                 VariableExtractionFactory.ExtractVariables(elem, variables, Parms);
@@ -42,13 +32,13 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
             }
         }
 
-        private static ExtractedVariable ExtractVar(IDictionary<string, ExtractedVariable> variables, AbstractConditionPart v)
+        private static void ExtractVar(IDictionary<string, ExtractedVariable> variables, AbstractConditionPart v, ExtractedVariable itVar)
         {
             var myVar = v as VariableConditionPart;
             if (myVar != null)
             {
-                NoteVar(variables, myVar.VariableName, "0");
-                return GetVar(variables,myVar.VariableName);
+                NoteVar(variables, myVar.VariableName, "0", false, itVar);
+                return;
             }
 
             var opPart = v as OperationConditionPart;
@@ -58,10 +48,10 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
                 var opPartRight = opPart.RightSide as OperationConditionPart;
 
                 if (opPartLeft != null)
-                    ExtractVar(variables, opPartLeft);
+                    ExtractVar(variables, opPartLeft, itVar);
 
                 if (opPartRight != null)
-                    ExtractVar(variables, opPartRight);
+                    ExtractVar(variables, opPartRight, itVar);
 
                 var opPartLeftV = opPart.LeftSide as VariableConditionPart;
 
@@ -69,15 +59,14 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
 
                 if (opPartLeftV != null && opPartRightV != null)
                 {
-                    NoteVar(variables, opPartLeftV.VariableName, "{" + opPartRightV.VariableName + "}");
-                    NoteVar(variables, opPartRightV.VariableName, "{" + opPartLeftV.VariableName + "}");
+                    NoteVar(variables, opPartLeftV.VariableName, "{" + opPartRightV.VariableName + "}", false, itVar);
+                    NoteVar(variables, opPartRightV.VariableName, "{" + opPartLeftV.VariableName + "}", false, itVar);
                 }
                 else if (opPartLeftV != null)
-                    NoteVars(opPartLeftV, opPart.RightSide, variables);
+                    NoteVars(opPartLeftV, opPart.RightSide, variables, false, itVar);
                 else if (opPartRightV != null)
-                    NoteVars(opPartRightV, opPart.LeftSide, variables);
+                    NoteVars(opPartRightV, opPart.LeftSide, variables, false, itVar);
             }
-            return null;
         }
     }
 }

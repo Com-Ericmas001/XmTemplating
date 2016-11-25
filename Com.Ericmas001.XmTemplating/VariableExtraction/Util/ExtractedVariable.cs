@@ -9,18 +9,21 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
     [SuppressMessage("ReSharper", "UnusedAutoPropertyAccessor.Global")]
     public class ExtractedVariable
     {
+        private List<string> m_Values = new List<string>();
         public string Name { get; private set; }
         public Guid Guid { get; private set; }
-        public List<string> Values { get; private set; }
         public List<ExtractedVariable> Links { get; private set; }
         public bool IsArray { get; set; }
         public bool IsUsingListValues { get; set; }
         public bool IsLocal { get; set; }
         public VariableTypeEnum GuessedType { get; set; }
+
+        public IEnumerable<string> Values => m_Values.ToArray();
+
         public ExtractedVariable(string name, params string[] initialValues)
         {
+            m_Values.AddRange(initialValues);
             Name = name;
-            Values = new List<string>(initialValues);
             Links = new List<ExtractedVariable>();
             Guid = Guid.NewGuid();
             IsLocal = false;
@@ -40,7 +43,7 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
                 return;
 
             Links.Add(variable);
-            Values.RemoveAll(x => x == name);
+            m_Values.RemoveAll(x => x == name);
         }
 
         public void ExpandLinks()
@@ -50,12 +53,17 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction.Util
             links.Remove(this);
             if (links.Any())
             {
-                Values.AddRange(links.SelectMany(x => x.Values));
+                m_Values.AddRange(links.SelectMany(x => x.Values));
                 IsUsingListValues = links.All(x => x.IsUsingListValues);
-                Values = Values.Distinct().ToList();
+                m_Values = Values.Distinct().ToList();
                 Links.Clear();
             }
 
+        }
+        public void AddValue(string value)
+        {
+            if(!m_Values.Contains(value))
+                m_Values.Add(value);
         }
         public void GuessType()
         {
