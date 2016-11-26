@@ -12,7 +12,7 @@ namespace Com.Ericmas001.XmTemplating.Deserialization
         {
             var result = new StaticTemplateElement(root)
             {
-                Content = Environment.NewLine
+                Content = "<:BR:>"
             };
 
             tokenizer.AdvanceUntilChar('>');

@@ -7,17 +7,17 @@ BadChoice
 </DEFINE_ARRAY>
 Hey <IF [{IsMyBuddy} == "True"]>buddy !<:ELSE:>you,</IF>
 This is some cool stuff: {CoolStuff}
-
+<BR />
 Cars:
 <FOREACH [{Car} IN ("Mercedes", "Kia", "Subaru", "Dodge", "Mitsubichi")]>
 - {Car}   <if [{Car} = {MyCar}]>(---- MINE</if>
 </FOREACH>
-
+<BR />
 Choices:  
 <FOREACH {Choice}>
 - {Choice}
 </FOREACH>
-
+<BR />
 People
 <FOREACH {Person}>
 Hello I am {Person} ({BigNumber}) <if [{BigNumber} * "3" > "5"]>VeryBig Number!!! <EVAL [{BigNumber} * "5"] /> {Animal}</if>

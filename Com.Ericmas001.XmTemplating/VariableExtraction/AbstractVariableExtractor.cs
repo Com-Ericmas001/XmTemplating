@@ -21,12 +21,17 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
 
         public abstract void ExtractVariables(IDictionary<string, ExtractedVariable> variables );
 
-        protected static void NoteVar(IDictionary<string, ExtractedVariable> variables, string key, string value, bool fromList = false)
+        protected static void NoteVar(IDictionary<string, ExtractedVariable> variables, string key, string value, bool fromList = false, ExtractedVariable linkedVar = null)
         {
             var v = GetVar(variables, key);
-            v.Values.Add(value);
+            v.AddValue(value);
             if (fromList)
                 v.IsUsingListValues = true;
+            if (linkedVar != null)
+            {
+                v.Links.Add(linkedVar);
+                linkedVar.Links.Add(v);
+            }
         }
         protected static void NoteArrayVar(IDictionary<string, ExtractedVariable> variables, string key)
         {
@@ -40,16 +45,16 @@ namespace Com.Ericmas001.XmTemplating.VariableExtraction
             return variables[key];
         }
 
-        protected static void NoteVars(VariableConditionPart opPartLeftV, AbstractConditionPart opPart, IDictionary<string, ExtractedVariable> variables, bool fromList = false)
+        protected static void NoteVars(VariableConditionPart opPartLeftV, AbstractConditionPart opPart, IDictionary<string, ExtractedVariable> variables, bool fromList = false, ExtractedVariable linkedVar = null)
         {
             var opPartRightL = opPart as LiteralConditionPart;
             var opPartRightG = opPart as GroupedConditionPart;
 
             if (opPartRightL != null)
-                NoteVar(variables, opPartLeftV.VariableName, opPartRightL.Value, fromList);
+                NoteVar(variables, opPartLeftV.VariableName, opPartRightL.Value, fromList, linkedVar);
             else if (opPartRightG != null)
                 foreach (var cp in opPartRightG.Values)
-                    NoteVars(opPartLeftV, cp, variables, true);
+                    NoteVars(opPartLeftV, cp, variables, true, linkedVar);
         }
     }
 }
