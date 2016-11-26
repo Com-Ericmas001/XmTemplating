@@ -24,8 +24,14 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util.TemplateComparator
 
             else if (left is ConditionalTemplateElement)
                 new ConditionnalTemplateComparator().Compare(left, right);
+
+            else if (left is EnumeratorTemplateElement)
+                new EnumeratorTemplateComparator().Compare(left, right);
+
+            else if (left is EvaluateTemplateElement)
+                new EvaluateTemplateComparator().Compare(left, right);
             else
-                throw new NotImplementedException("Unable to compare template, template element not supported");
+                throw new NotImplementedException("Unable to compare template, template element not supported " + right.GetType());
         }
     }
 }

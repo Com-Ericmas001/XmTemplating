@@ -11,7 +11,7 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util.TemplateComparator
             var leftElem = (ConditionalTemplateElement)left;
             var rightElem = (ConditionalTemplateElement)right;
 
-            AbstractConditionComparator.CompareTemplateElements(leftElem.Condition, rightElem.Condition);
+            AbstractConditionComparator.CompareConditionParts(leftElem.Condition, rightElem.Condition);
             Assert.AreEqual(leftElem.ConditionTrueElements.Count(), rightElem.ConditionTrueElements.Count());
 
             var elems1L = leftElem.ConditionTrueElements.ToArray();

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Com.Ericmas001.XmTemplating.Conditions;
 using Com.Ericmas001.XmTemplating.Enums;
 
@@ -20,11 +16,11 @@ namespace Com.Ericmas001.XmTemplating.Tests.Resources
                 new StaticTemplateElement(this) {Content = Environment.NewLine + "Hey "},
                 new BuddyConditionalTemplateElement(this),
                 new StaticTemplateElement(this) {Content = Environment.NewLine + "This is some cool stuff: {CoolStuff}" + Environment.NewLine + Environment.NewLine + "Cars:" + Environment.NewLine},
-                new EnumeratorTemplateElement(this),
+                new CarsEnumeratorTemplateElement(this),
                 new StaticTemplateElement(this) {Content = Environment.NewLine + Environment.NewLine + "Choices:  " + Environment.NewLine},
-                new EnumeratorTemplateElement(this),
+                new ChoicesEnumeratorTemplateElement(this),
                 new StaticTemplateElement(this) {Content = Environment.NewLine + Environment.NewLine + "People" + Environment.NewLine},
-                new EnumeratorTemplateElement(this),
+                new PeopleEnumeratorTemplateElement(this),
                 new StaticTemplateElement(this) {Content = Environment.NewLine + "*******" + Environment.NewLine},
                 new RangeTemplateElement(this),
                 new StaticTemplateElement(this) {Content = "  " + Environment.NewLine + " " + Environment.NewLine},
@@ -90,6 +86,260 @@ namespace Com.Ericmas001.XmTemplating.Tests.Resources
                 ConditionTrueElements = new AbstractTemplateElement[]
                 {
                     new StaticTemplateElement(this) {Content = "{DoraCar} is like mine "}
+                };
+            }
+        }
+        private class CarsEnumeratorTemplateElement : EnumeratorTemplateElement
+        {
+            public CarsEnumeratorTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                EnumerationCondition = new OperationConditionPart()
+                {
+                    LeftSide = new VariableConditionPart { VariableName = "Car" },
+                    RightSide = new GroupedConditionPart { Values = new AbstractConditionPart[] { new LiteralConditionPart { Value = "Mercedes" }, new LiteralConditionPart { Value = "Kia" }, new LiteralConditionPart { Value = "Subaru" }, new LiteralConditionPart { Value = "Dodge" }, new LiteralConditionPart { Value = "Mitsubichi" } } },
+                    Operator = ConditionPartOperatorEnum.In
+                };
+                Elements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine + "- {Car}   "},
+                    new CarIsMyCarConditionalTemplateElement(this),
+                    new StaticTemplateElement(this) {Content = Environment.NewLine}
+                };
+            }
+        }
+        private class CarIsMyCarConditionalTemplateElement : ConditionalTemplateElement
+        {
+            public CarIsMyCarConditionalTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Condition = new OperationConditionPart()
+                {
+                    LeftSide = new VariableConditionPart { VariableName = "Car" },
+                    RightSide = new VariableConditionPart { VariableName = "MyCar" },
+                    Operator = ConditionPartOperatorEnum.Equals
+                };
+                ConditionTrueElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = "(---- MINE"}
+                };
+            }
+        }
+        private class ChoicesEnumeratorTemplateElement : EnumeratorTemplateElement
+        {
+            public ChoicesEnumeratorTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                EnumerationCondition = new VariableConditionPart { VariableName = "Choice" };
+                Elements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine + "- {Choice}" + Environment.NewLine}
+                };
+            }
+        }
+        private class PeopleEnumeratorTemplateElement : EnumeratorTemplateElement
+        {
+            public PeopleEnumeratorTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                EnumerationCondition = new VariableConditionPart {VariableName = "Person"};
+                Elements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine + "Hello I am {Person} ({BigNumber}) "},
+                    new BigNumberConditionalTemplateElement(this),
+                    new StaticTemplateElement(this) {Content = Environment.NewLine + Environment.NewLine + "*******" + Environment.NewLine},
+                    new ChocolatesEnumeratorTemplateElement(this),
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                };
+            }
+        }
+        private class BigNumberConditionalTemplateElement : ConditionalTemplateElement
+        {
+            public BigNumberConditionalTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Condition = new OperationConditionPart()
+                {
+                    LeftSide = new OperationConditionPart()
+                    {
+                        LeftSide = new VariableConditionPart { VariableName = "BigNumber" },
+                        RightSide = new LiteralConditionPart { Value = "3" },
+                        Operator = ConditionPartOperatorEnum.Multiply
+                    },
+                    RightSide = new LiteralConditionPart { Value = "5" },
+                    Operator = ConditionPartOperatorEnum.GreaterThan
+                };
+                ConditionTrueElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = "VeryBig Number!!! "},
+                    new EvaluateTemplateElement(this) {Expression = new OperationConditionPart()
+                    {
+                        LeftSide = new VariableConditionPart { VariableName = "BigNumber" },
+                        RightSide = new LiteralConditionPart { Value = "5" },
+                        Operator = ConditionPartOperatorEnum.Multiply
+                    }},
+                    new StaticTemplateElement(this) {Content = " {Animal}"}
+                };
+            }
+        }
+        private class ChocolatesEnumeratorTemplateElement : EnumeratorTemplateElement
+        {
+            public ChocolatesEnumeratorTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                EnumerationCondition = new VariableConditionPart { VariableName = "Chocolate" };
+                Elements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                    new FruitsEnumeratorTemplateElement(this),
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                };
+            }
+        }
+        private class FruitsEnumeratorTemplateElement : EnumeratorTemplateElement
+        {
+            public FruitsEnumeratorTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                EnumerationCondition = new VariableConditionPart { VariableName = "Fruit" };
+                Elements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = "    " + Environment.NewLine},
+                    new BobAndBillyConditionalTemplateElement(this), 
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                    new ChocolateConditionalTemplateElement(this),
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                };
+            }
+        }
+        private class BobAndBillyConditionalTemplateElement : ConditionalTemplateElement
+        {
+            public BobAndBillyConditionalTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Condition = new OperationConditionPart
+                {
+                    LeftSide = new OperationConditionPart
+                    {
+                        LeftSide = new OperationConditionPart
+                        {
+                            LeftSide = new OperationConditionPart
+                            {
+                                LeftSide = new VariableConditionPart { VariableName = "Person" },
+                                RightSide = new LiteralConditionPart { Value = "Bob" },
+                                Operator = ConditionPartOperatorEnum.Different
+                            },
+                            RightSide = new OperationConditionPart
+                            {
+                                LeftSide = new VariableConditionPart { VariableName = "Person" },
+                                RightSide = new LiteralConditionPart { Value = "Billy" },
+                                Operator = ConditionPartOperatorEnum.Different
+                            },
+                            Operator = ConditionPartOperatorEnum.And
+                        },
+                        RightSide = new OperationConditionPart
+                        {
+                            LeftSide = new OperationConditionPart
+                            {
+                                LeftSide = new VariableConditionPart { VariableName = "Fruit" },
+                                RightSide = new LiteralConditionPart { Value = "Orange" },
+                                Operator = ConditionPartOperatorEnum.Equals
+                            },
+                            RightSide = new OperationConditionPart
+                            {
+                                LeftSide = new LiteralConditionPart { Value = "Kiwi" },
+                                RightSide = new VariableConditionPart { VariableName = "Fruit" },
+                                Operator = ConditionPartOperatorEnum.Equals
+                            },
+                            Operator = ConditionPartOperatorEnum.Or
+                        },
+                        Operator = ConditionPartOperatorEnum.And
+                    },
+                    RightSide = new OperationConditionPart
+                    {
+                        LeftSide = new OperationConditionPart
+                        {
+                            LeftSide = new VariableConditionPart { VariableName = "Fruit" },
+                            RightSide = new LiteralConditionPart { Value = "Pineapple" },
+                            Operator = ConditionPartOperatorEnum.Equals
+                        },
+                        RightSide = new OperationConditionPart
+                        {
+                            LeftSide = new VariableConditionPart { VariableName = "Fruit" },
+                            RightSide = new LiteralConditionPart { Value = "Apple" },
+                            Operator = ConditionPartOperatorEnum.Equals
+                        },
+                        Operator = ConditionPartOperatorEnum.Or
+                    },
+                    Operator = ConditionPartOperatorEnum.Or
+                };
+                ConditionTrueElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine + "* This {Person} really appreciates {Fruit}" + Environment.NewLine}
+                };
+            }
+        }
+        private class ChocolateConditionalTemplateElement : ConditionalTemplateElement
+        {
+            public ChocolateConditionalTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Condition = new OperationConditionPart
+                {
+                    LeftSide = new OperationConditionPart
+                    {
+                        LeftSide = new OperationConditionPart
+                        {
+                            LeftSide = new VariableConditionPart { VariableName = "Chocolate" },
+                            RightSide = new LiteralConditionPart { Value = "White" },
+                            Operator = ConditionPartOperatorEnum.Equals
+                        },
+                        RightSide = new OperationConditionPart
+                        {
+                            LeftSide = new VariableConditionPart { VariableName = "Fruit" },
+                            RightSide = new LiteralConditionPart { Value = "Lemon" },
+                            Operator = ConditionPartOperatorEnum.Equals
+                        },
+                        Operator = ConditionPartOperatorEnum.And
+                    },
+                    RightSide = new OperationConditionPart
+                    {
+                        LeftSide = new OperationConditionPart
+                        {
+                            LeftSide = new VariableConditionPart { VariableName = "Chocolate" },
+                            RightSide = new LiteralConditionPart { Value = "Dark" },
+                            Operator = ConditionPartOperatorEnum.Equals
+                        },
+                        RightSide = new OperationConditionPart
+                        {
+                            LeftSide = new VariableConditionPart { VariableName = "Fruit" },
+                            RightSide = new LiteralConditionPart { Value = "Strawberry" },
+                            Operator = ConditionPartOperatorEnum.Equals
+                        },
+                        Operator = ConditionPartOperatorEnum.And
+                    },
+                    Operator = ConditionPartOperatorEnum.Or
+                };
+                ConditionTrueElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine + "*  The mix of {Chocolate} Chocolate and {Fruit} is perfect" + Environment.NewLine}
+                };
+                ConditionFalseElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                    new BitternessChocolateConditionalTemplateElement(this),
+                    new StaticTemplateElement(this) {Content = "   " + Environment.NewLine + "*  this is a cool fruit: {Fruit}" + Environment.NewLine}
+                };
+            }
+        }
+        private class BitternessChocolateConditionalTemplateElement : ConditionalTemplateElement
+        {
+            public BitternessChocolateConditionalTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Condition = new OperationConditionPart
+                {
+                    LeftSide = new VariableConditionPart { VariableName = "Chocolate" },
+                    RightSide = new GroupedConditionPart { Values = new AbstractConditionPart[] { new LiteralConditionPart { Value = "White" }, new LiteralConditionPart { Value = "Milk" } } },
+                    Operator = ConditionPartOperatorEnum.In
+                };
+                ConditionTrueElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = "    " + Environment.NewLine + "*  this is sugary chocolate because it's {Chocolate}" + Environment.NewLine}
+                };
+                ConditionFalseElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = "         " + Environment.NewLine + "*  this is bitter chocolate because it's {Chocolate}" + Environment.NewLine}
                 };
             }
         }

@@ -9,12 +9,22 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util.ConditionComparator
     {
         protected abstract void Compare(AbstractConditionPart left, AbstractConditionPart right);
 
-        public static void CompareTemplateElements(AbstractConditionPart left, AbstractConditionPart right)
+        public static void CompareConditionParts(AbstractConditionPart left, AbstractConditionPart right)
         {
             Assert.IsNotNull(left);
             Assert.IsNotNull(right);
             Assert.IsTrue(right.GetType().IsInstanceOfType(left));
-            throw new NotImplementedException("Unable to compare condition, condition part not supported");
+
+            if (left is LiteralConditionPart)
+                new LiteralConditionComparator().Compare(left, right);
+            else if (left is OperationConditionPart)
+                new OperationConditionComparator().Compare(left, right);
+            else if (left is VariableConditionPart)
+                new VariableConditionComparator().Compare(left, right);
+            else if (left is GroupedConditionPart)
+                new GroupedConditionComparator().Compare(left, right);
+            else
+                throw new NotImplementedException("Unable to compare condition, condition part not supported " + right.GetType());
         }
     }
 }

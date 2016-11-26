@@ -58,7 +58,13 @@
     <Compile Include="TemplateElements\ConditionOperatorsTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Util\ConditionComparator\AbstractConditionComparator.cs" />
+    <Compile Include="Util\ConditionComparator\GroupedConditionComparator.cs" />
+    <Compile Include="Util\ConditionComparator\VariableConditionComparator.cs" />
+    <Compile Include="Util\ConditionComparator\OperationConditionComparator.cs" />
+    <Compile Include="Util\ConditionComparator\LiteralConditionComparator.cs" />
     <Compile Include="Util\ExtractionVarUtil.cs" />
+    <Compile Include="Util\TemplateComparator\EvaluateTemplateComparator.cs" />
+    <Compile Include="Util\TemplateComparator\EnumeratorTemplateComparator.cs" />
     <Compile Include="Util\TemplateComparator\ConditionnalTemplateComparator.cs" />
     <Compile Include="Util\TemplateComparator\DefineTemplateComparator.cs" />
     <Compile Include="Util\TemplateComparator\StaticTemplateComparator.cs" />
