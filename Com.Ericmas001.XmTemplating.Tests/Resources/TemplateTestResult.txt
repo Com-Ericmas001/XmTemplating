@@ -1,0 +1,754 @@
+﻿
+
+Hey buddy !
+This is some cool stuff: I'm cool
+
+
+Cars:
+
+- Mercedes   
+
+- Kia   
+
+- Subaru   (---- MINE
+
+- Dodge   
+
+- Mitsubichi   
+
+
+
+Choices:  
+
+- Choice1
+
+- Choice2
+
+- Choice3
+
+- BadChoice
+
+
+
+People
+
+Hello I am Billy (25) VeryBig Number!!! 125 Rabbit
+
+*******
+
+    
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Billy really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+*  The mix of Dark Chocolate and Strawberry is perfect
+
+    
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+*  The mix of White Chocolate and Lemon is perfect
+
+    
+
+* This Billy really appreciates Pineapple
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Billy really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Billy really appreciates Pineapple
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Billy really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Kiwi
+
+
+
+
+Hello I am Bob (25) VeryBig Number!!! 125 Rabbit
+
+*******
+
+    
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Bob really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+*  The mix of Dark Chocolate and Strawberry is perfect
+
+    
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+*  The mix of White Chocolate and Lemon is perfect
+
+    
+
+* This Bob really appreciates Pineapple
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Bob really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Bob really appreciates Pineapple
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Bob really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Kiwi
+
+
+
+
+Hello I am Julia (25) VeryBig Number!!! 125 Rabbit
+
+*******
+
+    
+
+* This Julia really appreciates Orange
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Julia really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+*  The mix of Dark Chocolate and Strawberry is perfect
+
+    
+
+* This Julia really appreciates Kiwi
+
+
+         
+*  this is bitter chocolate because it's Dark
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+* This Julia really appreciates Orange
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+*  The mix of White Chocolate and Lemon is perfect
+
+    
+
+* This Julia really appreciates Pineapple
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+* This Julia really appreciates Kiwi
+
+
+    
+*  this is sugary chocolate because it's White
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+* This Julia really appreciates Orange
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Julia really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+* This Julia really appreciates Kiwi
+
+
+         
+*  this is bitter chocolate because it's 75%
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+* This Julia really appreciates Orange
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Julia really appreciates Pineapple
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+* This Julia really appreciates Kiwi
+
+
+    
+*  this is sugary chocolate because it's Milk
+   
+*  this is a cool fruit: Kiwi
+
+
+
+    
+
+* This Julia really appreciates Orange
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Orange
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Lemon
+
+    
+
+* This Julia really appreciates Pineapple
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Pineapple
+
+    
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Strawberry
+
+    
+
+* This Julia really appreciates Kiwi
+
+
+         
+*  this is bitter chocolate because it's Very Dark
+   
+*  this is a cool fruit: Kiwi
+
+
+
+
+*******
+
+ 
+-)   Counting From 21 TO 25 : 21      
+
+ 
+-)   Counting From 21 TO 25 : 22      
+
+ 
+-)   Counting From 21 TO 25 : 23      
+
+ 
+-)   Counting From 21 TO 25 : 24      
+  
+ 
+
+ 
+-)   Counting From 42 UNTIL 50 : 42  My Favorite Number    
+
+ 
+-)   Counting From 42 UNTIL 50 : 43      
+
+ 
+-)   Counting From 42 UNTIL 50 : 44      
+
+ 
+-)   Counting From 42 UNTIL 50 : 45      
+
+ 
+-)   Counting From 42 UNTIL 50 : 46      
+
+ 
+-)   Counting From 42 UNTIL 50 : 47      
+
+ 
+-)   Counting From 42 UNTIL 50 : 48      
+
+ 
+-)   Counting From 42 UNTIL 50 : 49      
+
+ 
+-)   Counting From 42 UNTIL 50 : 50      
+

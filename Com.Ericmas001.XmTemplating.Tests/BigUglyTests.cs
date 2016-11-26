@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Com.Ericmas001.XmTemplating.Deserialization;
 using Com.Ericmas001.XmTemplating.Enums;
+using Com.Ericmas001.XmTemplating.Serialization;
+using Com.Ericmas001.XmTemplating.Serialization.Util;
 using Com.Ericmas001.XmTemplating.Tests.Resources;
 using Com.Ericmas001.XmTemplating.Tests.Util;
 using Com.Ericmas001.XmTemplating.Tests.Util.TemplateComparator;
@@ -20,8 +23,68 @@ namespace Com.Ericmas001.XmTemplating.Tests
             string dirPath = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
             string filePath = Path.Combine(dirPath, "Resources", "TemplateTest.txt");
             string template = File.ReadAllText(filePath);
-            
+
             AbstractTemplateComparator.CompareTemplateElements(new TemplateTest(), XmTemplateDeserializer.Deserialize(template));
+        }
+        [Test]
+        public void TemplateSerializationDirty()
+        {
+            string dirPath = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
+            string filePath = Path.Combine(dirPath, "Resources", "TemplateTest.txt");
+            string template = File.ReadAllText(filePath);
+
+            var vars = new Dictionary<string, string>
+                    {
+                        {"CoolStuff", "I'm cool"},
+                        {"IsMyBuddy", "True"},
+                        {"BigNumber", "25"},
+                        {"Min1", "21"},
+                        {"Max1", "25"},
+                        {"Min2", "42"},
+                        {"Max2", "50"},
+                        {"MyCar", "Subaru"},
+                        {"DoraCar", "Kia"},
+                    };
+            var arrays = new Dictionary<string, IEnumerable<string>>
+                    {
+                        {"Chocolate", new[] {"Dark", "White", "75%", "Milk", "Very Dark"}},
+                        {"Fruit", new[] {"Orange", "Lemon", "Pineapple", "Strawberry", "Kiwi"}},
+                        {"Person", new[] {"Billy", "Bob", "Julia"}}
+                    };
+
+            string resFilePath = Path.Combine(dirPath, "Resources", "TemplateTestResult.txt");
+            string expectedResult = File.ReadAllText(resFilePath);
+            Assert.AreEqual(expectedResult, XmTemplateSerializer.Serialize(XmTemplateDeserializer.Deserialize(template), vars, arrays, new TemplateSerializationParms { RemoveEmptyLines = false, TrimEndOfLines = false}));
+        }
+        [Test]
+        public void TemplateSerializationClean()
+        {
+            string dirPath = Path.GetDirectoryName(Uri.UnescapeDataString(new UriBuilder(Assembly.GetExecutingAssembly().CodeBase).Path));
+            string filePath = Path.Combine(dirPath, "Resources", "TemplateTest.txt");
+            string template = File.ReadAllText(filePath);
+
+            var vars = new Dictionary<string, string>
+                    {
+                        {"CoolStuff", "I'm cool"},
+                        {"IsMyBuddy", "True"},
+                        {"BigNumber", "25"},
+                        {"Min1", "21"},
+                        {"Max1", "25"},
+                        {"Min2", "42"},
+                        {"Max2", "50"},
+                        {"MyCar", "Subaru"},
+                        {"DoraCar", "Kia"},
+                    };
+            var arrays = new Dictionary<string, IEnumerable<string>>
+                    {
+                        {"Chocolate", new[] {"Dark", "White", "75%", "Milk", "Very Dark"}},
+                        {"Fruit", new[] {"Orange", "Lemon", "Pineapple", "Strawberry", "Kiwi"}},
+                        {"Person", new[] {"Billy", "Bob", "Julia"}}
+                    };
+
+            string resFilePath = Path.Combine(dirPath, "Resources", "TemplateTestResultClean.txt");
+            string expectedResult = File.ReadAllText(resFilePath);
+            Assert.AreEqual(expectedResult, XmTemplateSerializer.Serialize(XmTemplateDeserializer.Deserialize(template), vars, arrays));
         }
         [Test]
         public void VariableExtractionTest()

@@ -81,6 +81,12 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\TemplateTestResultClean.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\TemplateTestResult.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\TemplateTest.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
