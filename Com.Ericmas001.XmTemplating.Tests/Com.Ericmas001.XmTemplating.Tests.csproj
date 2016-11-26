@@ -63,6 +63,7 @@
     <Compile Include="Util\ConditionComparator\OperationConditionComparator.cs" />
     <Compile Include="Util\ConditionComparator\LiteralConditionComparator.cs" />
     <Compile Include="Util\ExtractionVarUtil.cs" />
+    <Compile Include="Util\TemplateComparator\RangeTemplateComparator.cs" />
     <Compile Include="Util\TemplateComparator\EvaluateTemplateComparator.cs" />
     <Compile Include="Util\TemplateComparator\EnumeratorTemplateComparator.cs" />
     <Compile Include="Util\TemplateComparator\ConditionnalTemplateComparator.cs" />

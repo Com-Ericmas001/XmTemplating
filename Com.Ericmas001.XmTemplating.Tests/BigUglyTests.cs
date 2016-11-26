@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Com.Ericmas001.XmTemplating.Conditions;
 using Com.Ericmas001.XmTemplating.Deserialization;
 using Com.Ericmas001.XmTemplating.Enums;
 using Com.Ericmas001.XmTemplating.Tests.Resources;

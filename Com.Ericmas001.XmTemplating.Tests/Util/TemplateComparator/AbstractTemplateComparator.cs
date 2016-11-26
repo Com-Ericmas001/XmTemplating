@@ -30,6 +30,10 @@ namespace Com.Ericmas001.XmTemplating.Tests.Util.TemplateComparator
 
             else if (left is EvaluateTemplateElement)
                 new EvaluateTemplateComparator().Compare(left, right);
+
+            else if (left is RangeTemplateElement)
+                new RangeTemplateComparator().Compare(left, right);
+
             else
                 throw new NotImplementedException("Unable to compare template, template element not supported " + right.GetType());
         }

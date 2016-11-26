@@ -22,9 +22,9 @@ namespace Com.Ericmas001.XmTemplating.Tests.Resources
                 new StaticTemplateElement(this) {Content = Environment.NewLine + Environment.NewLine + "People" + Environment.NewLine},
                 new PeopleEnumeratorTemplateElement(this),
                 new StaticTemplateElement(this) {Content = Environment.NewLine + "*******" + Environment.NewLine},
-                new RangeTemplateElement(this),
+                new ToRangeTemplateElement(this),
                 new StaticTemplateElement(this) {Content = "  " + Environment.NewLine + " " + Environment.NewLine},
-                new RangeTemplateElement(this),
+                new UntilRangeTemplateElement(this),
                 new StaticTemplateElement(this) {Content = Environment.NewLine},
                 new DoraCarConditionalTemplateElement(this),
             };
@@ -340,6 +340,74 @@ namespace Com.Ericmas001.XmTemplating.Tests.Resources
                 ConditionFalseElements = new AbstractTemplateElement[]
                 {
                     new StaticTemplateElement(this) {Content = "         " + Environment.NewLine + "*  this is bitter chocolate because it's {Chocolate}" + Environment.NewLine}
+                };
+            }
+        }
+        private class ToRangeTemplateElement : RangeTemplateElement
+        {
+            public ToRangeTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Minimum = new VariableConditionPart { VariableName = "Min1" };
+                Maximum = new OperationConditionPart
+                {
+                    LeftSide = new VariableConditionPart { VariableName = "Max1" },
+                    RightSide = new LiteralConditionPart { Value = "1" },
+                    Operator = ConditionPartOperatorEnum.Subtract
+                };
+                InludeMaximum = true;
+                Elements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                    new DefineITemplateElement(this),
+                    new StaticTemplateElement(this) {Content = " " + Environment.NewLine + "-)   Counting From {Min1} TO {Max1} : {I}  {FAV}    " + Environment.NewLine}
+                };
+            }
+        }
+        private class UntilRangeTemplateElement : RangeTemplateElement
+        {
+            public UntilRangeTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Minimum = new VariableConditionPart { VariableName = "Min2" };
+                Maximum = new OperationConditionPart
+                {
+                    LeftSide = new VariableConditionPart { VariableName = "Max2" },
+                    RightSide = new LiteralConditionPart { Value = "1" },
+                    Operator = ConditionPartOperatorEnum.Add
+                };
+                InludeMaximum = false;
+                Elements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = Environment.NewLine},
+                    new DefineITemplateElement(this),
+                    new StaticTemplateElement(this) {Content = " " + Environment.NewLine + "-)   Counting From {Min2} UNTIL {Max2} : {I}  {FAV}    " + Environment.NewLine}
+                };
+            }
+        }
+        private class DefineITemplateElement : DefineTemplateElement
+        {
+            public DefineITemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                IsArray = false;
+                Variable = new VariableConditionPart {VariableName = "FAV"};
+                Elements = new AbstractTemplateElement[]
+                {
+                    new I42ConditionalTemplateElement(this),
+                };
+            }
+        }
+        private class I42ConditionalTemplateElement : ConditionalTemplateElement
+        {
+            public I42ConditionalTemplateElement(AbstractTemplateElement parent) : base(parent)
+            {
+                Condition = new OperationConditionPart()
+                {
+                    LeftSide = new VariableConditionPart { VariableName = "I" },
+                    RightSide = new LiteralConditionPart { Value = "42" },
+                    Operator = ConditionPartOperatorEnum.Equals
+                };
+                ConditionTrueElements = new AbstractTemplateElement[]
+                {
+                    new StaticTemplateElement(this) {Content = "My Favorite Number"}
                 };
             }
         }
