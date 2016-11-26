@@ -3,7 +3,6 @@
 Hey buddy !
 This is some cool stuff: I'm cool
 
-
 Cars:
 
 - Mercedes   
@@ -17,7 +16,6 @@ Cars:
 - Mitsubichi   
 
 
-
 Choices:  
 
 - Choice1
@@ -27,7 +25,6 @@ Choices:
 - Choice3
 
 - BadChoice
-
 
 
 People
