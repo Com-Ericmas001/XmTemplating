@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/Com-Ericmas001/XmTemplating.svg?branch=master)](https://travis-ci.org/Com-Ericmas001/XmTemplating)
 [![com-ericmas001 MyGet Build Status](https://www.myget.org/BuildSource/Badge/com-ericmas001?identifier=d044fbc0-d2b3-4470-82b6-38cf00b18a7f)](https://www.myget.org/)
 
-###Current Version: 0.3.1 *(2016-11-22)*
+###Current Version: 0.4.0 *(2016-11-26)*
 <table align="center" width="100%">
     <tbody>
         <tr>
