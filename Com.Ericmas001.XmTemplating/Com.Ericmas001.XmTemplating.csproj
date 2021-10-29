@@ -1,126 +1,23 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{2FA1BD7F-3438-4A8B-AD3F-EC29A880F305}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Com.Ericmas001.XmTemplating</RootNamespace>
-    <AssemblyName>Com.Ericmas001.XmTemplating</AssemblyName>
-    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <DebugType>full</DebugType>
-    <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugType>pdbonly</DebugType>
-    <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
-    <DefineConstants>TRACE</DefineConstants>
-    <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>1.0.0</Version>
+    <Authors>Ericmas001</Authors>
+    <Description>Com.Ericmas001.XmTemplating</Description>
+    <Copyright>Ericmas001</Copyright>
+    <PackageReleaseNotes>Development Version</PackageReleaseNotes>
+    <PackageIcon>icon.png</PackageIcon>
+    <PackageIconUrl>https://github.com/Com-Ericmas001/Common/raw/master/Resources/lib.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/Com-Ericmas001/DependencyXmTemplating</PackageProjectUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <NeutralLanguage>en</NeutralLanguage>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Com.Ericmas001.Common, Version=0.4.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Com.Ericmas001.Common.0.4.3\lib\net40\Com.Ericmas001.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
+    <None Include="_Nuget\icon.png" Pack="true" PackagePath="" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbstractTemplateElement.cs" />
-    <Compile Include="Attributes\AvailableToAttribute.cs" />
-    <Compile Include="Attributes\TemplateElementVariableExtractorAttribute.cs" />
-    <Compile Include="Attributes\TemplateElementSerializerAttribute.cs" />
-    <Compile Include="Attributes\ValueTypeAttribute.cs" />
-    <Compile Include="Builder\XmAttribute.cs" />
-    <Compile Include="Builder\XmTemplate.cs" />
-    <Compile Include="Builder\XmVariable.cs" />
-    <Compile Include="Builder\Util\XmlDeserializerFactory.cs" />
-    <Compile Include="ConditionalTemplateElement.cs" />
-    <Compile Include="DefineTemplateElement.cs" />
-    <Compile Include="EnumeratorTemplateElement.cs" />
-    <Compile Include="Enums\VarAttributeEnum.cs" />
-    <Compile Include="Attributes\TemplateCommandAttribute.cs" />
-    <Compile Include="Conditions\AbstractConditionPart.cs" />
-    <Compile Include="Conditions\GroupedConditionPart.cs" />
-    <Compile Include="Conditions\LiteralConditionPart.cs" />
-    <Compile Include="Conditions\OperationConditionPart.cs" />
-    <Compile Include="Conditions\Util\ConditionDeserializer.cs" />
-    <Compile Include="Enums\ConditionPartOperatorEnum.cs" />
-    <Compile Include="Conditions\Util\ConditionSerializer.cs" />
-    <Compile Include="Conditions\Util\NumberGiver.cs" />
-    <Compile Include="Attributes\SequentialAttribute.cs" />
-    <Compile Include="Attributes\SupportedOperatorAttribute.cs" />
-    <Compile Include="Conditions\VariableConditionPart.cs" />
-    <Compile Include="Deserialization\AbstractTemplateDeserializer.cs" />
-    <Compile Include="Deserialization\ConditionalTemplateDeserializer.cs" />
-    <Compile Include="Deserialization\DefineTemplateDeserializer.cs" />
-    <Compile Include="Deserialization\EnumeratorTemplateDeserializer.cs" />
-    <Compile Include="Deserialization\EvaluateTemplateDeserializer.cs" />
-    <Compile Include="Attributes\TemplateCommandNameAttribute.cs" />
-    <Compile Include="Deserialization\XmTemplateDeserializer.cs" />
-    <Compile Include="Deserialization\NewLineTemplateDeserializer.cs" />
-    <Compile Include="Deserialization\RangeTemplateDeserializer.cs" />
-    <Compile Include="Deserialization\Util\TemplateDeserializationFactory.cs" />
-    <Compile Include="Deserialization\Util\TemplateDeserializationParms.cs" />
-    <Compile Include="Deserialization\Util\TemplateTokenizer.cs" />
-    <Compile Include="Enums\TemplateCommandEnum.cs" />
-    <Compile Include="Enums\VariableTypeEnum.cs" />
-    <Compile Include="EvaluateTemplateElement.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RangeTemplateElement.cs" />
-    <Compile Include="Serialization\AbstractTemplateSerializer.cs" />
-    <Compile Include="Serialization\ConditionalTemplateSerializer.cs" />
-    <Compile Include="Serialization\DefineTemplateSerializer.cs" />
-    <Compile Include="Serialization\EnumeratorTemplateSerializer.cs" />
-    <Compile Include="Serialization\EvaluateTemplateSerializer.cs" />
-    <Compile Include="Serialization\XmTemplateSerializer.cs" />
-    <Compile Include="Serialization\RangeTemplateSerializer.cs" />
-    <Compile Include="Serialization\StaticTemplateSerializer.cs" />
-    <Compile Include="Serialization\Util\TemplateSerializationFactory.cs" />
-    <Compile Include="Serialization\Util\TemplateSerializationParms.cs" />
-    <Compile Include="StaticTemplateElement.cs" />
-    <Compile Include="VariableExtraction\AbstractVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\ConditionalVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\DefineVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\EnumeratorVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\EvaluateVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\Util\ExtractedVariable.cs" />
-    <Compile Include="VariableExtraction\VariableExtractor.cs" />
-    <Compile Include="VariableExtraction\RangeVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\StaticVariableExtractor.cs" />
-    <Compile Include="VariableExtraction\Util\VariableExtractionFactory.cs" />
-    <Compile Include="VariableExtraction\Util\VariableExtractionParms.cs" />
-    <Compile Include="XmTemplateElement.cs" />
+    <PackageReference Include="Com.Ericmas001.Common" Version="0.5.1" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
